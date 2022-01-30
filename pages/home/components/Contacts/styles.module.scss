@@ -1,0 +1,56 @@
+.contracts {
+  display: block;
+}
+
+.card {
+  margin-top: 30px;
+  flex-direction: row;
+  position: relative;
+  padding: 30px;
+}
+
+.info {
+  display: block;
+}
+
+.h3 {
+  display: block;
+  margin: 0;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 120%;
+  color: #2b2b2b;
+}
+
+.image {
+  position: absolute;
+  left: 30px;
+  bottom: 0;
+}
+
+.map {
+  outline: none;
+  display: flex;
+  margin-left: auto;
+  overflow: hidden;
+  border: 1px solid #6f74fc;
+  border-radius: 30px;
+}
+
+.yandexHref {
+  color: #eee;
+  font-size: 12px;
+  position: absolute;
+  top: 0px;
+}
+
+.yandexLabel {
+  color: #eee;
+  font-size: 12px;
+  position: absolute;
+  top: 14px;
+}
+
+.iframe {
+  border: none;
+}

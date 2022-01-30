@@ -1,0 +1,30 @@
+.labs {
+  display: block;
+}
+
+.labList {
+  display: grid;
+  min-height: 270px;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 30px;
+}
+
+.lab {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.panel {
+  margin-top: auto;
+  white-space: nowrap;
+  width: 100%;
+  padding: 20px 34px;
+  display: inline-flex;
+  background-color: #f2f4f8;
+  border-radius: 30px;
+}
+
+.btn {
+  margin: 40px auto 0 auto;
+}

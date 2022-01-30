@@ -1,0 +1,32 @@
+.asset {
+  display: flex;
+}
+
+.image {
+  display: inline-flex;
+  min-width: 44px;
+  height: 44px;
+  border: 1px solid #b4b4b4;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.content {
+  margin-left: 10px;
+}
+
+.label {
+  display: block;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #444444;
+}
+
+.ticker {
+  display: block;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #b4b4b4;
+}

@@ -1,0 +1,133 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.featureList {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 52px;
+  padding: 0;
+}
+
+.feature {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 120%;
+  color: #2b2b2b;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.count {
+  margin-right: 30px;
+  width: 46px;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 120%;
+  color: #6f74fc;
+}
+
+.image {
+  display: inline-flex;
+  align-items: center;
+  width: 371px;
+  height: 354px;
+}
+
+.cardList {
+  margin: 60px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 30px;
+}
+
+.item {
+  width: 100%;
+}
+
+.link {
+  width: 100%;
+}
+
+.card {
+  width: 100%;
+  padding: 30px;
+  min-height: 180px;
+}
+
+.icon {
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  margin-top: 30px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 120%;
+  color: #2b2b2b;
+}
+
+.h3 {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 120%;
+  text-align: center;
+  color: #2b2b2b;
+}
+
+.swiperSlide {
+  background-color: transparent;
+}
+
+.story {
+  position: relative;
+  flex-direction: row;
+  padding: 30px;
+  box-shadow: none;
+}
+
+.avatar {
+  margin-right: 15px;
+}
+
+.info {
+  max-width: 650px;
+}
+
+.name {
+  display: block;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  color: #2b2b2b;
+}
+
+.job {
+  display: block;
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 120%;
+  color: #7d7d7e;
+}
+
+.desc {
+  margin: 20px 0 0 0;
+  font-size: 16px;
+  line-height: 140%;
+  color: #2b2b2b;
+}
+
+.btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}

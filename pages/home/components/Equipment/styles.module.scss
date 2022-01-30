@@ -1,0 +1,32 @@
+.equipment {
+  display: block;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 30px;
+}
+
+.card {
+  min-height: 270px;
+  display: inline-flex;
+  align-items: flex-end;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.panel {
+  margin-top: auto;
+  white-space: nowrap;
+  width: 100%;
+  padding: 20px 34px;
+  display: inline-flex;
+  background-color: #f2f4f8;
+  border-radius: 30px;
+}
+
+.btn {
+  margin: 30px auto 0 auto;
+}

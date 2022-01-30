@@ -1,0 +1,29 @@
+.projects {
+  display: block;
+}
+
+.cards {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 30px;
+}
+
+.card {
+  padding: 15px;
+}
+
+.desc {
+  display: block;
+  color: #7d7d7e;
+  font-size: 14px;
+  line-height: 140%;
+}
+
+.h3 {
+  margin: 10px 0;
+}
+
+.btn {
+  margin: 56px auto 0 auto;
+}

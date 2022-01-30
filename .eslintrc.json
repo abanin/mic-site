@@ -1,0 +1,19 @@
+{
+  "plugins": ["simple-import-sort"],
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "sort-imports": "off",
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^\\u0000"],
+          ["^react", "^@?\\w"],
+          ["^(components|api|mocks)*", "^\\."],
+          ["^.+\\.module\\.s?css$"]
+        ]
+      }
+    ]
+  }
+}

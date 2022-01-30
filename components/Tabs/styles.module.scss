@@ -1,0 +1,23 @@
+.tabs {
+  display: flex;
+}
+
+.tab {
+  cursor: pointer;
+  background-color: #6f74fc;
+  border-radius: 5px;
+  padding: 5px 24px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #444444;
+  margin-left: 10px;
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.active {
+  color: #f2f4f8;
+  background-color: #6f74fc;
+}
