@@ -114,7 +114,9 @@ const Events = () => {
                 {type.events.map((event) => {
                   return (
                     <li key={event.name} className={styles.event}>
-                      <Link href={event.href}>{event.name}</Link>
+                      <Link className={styles.link} href={event.href}>
+                        {event.name}
+                      </Link>
                     </li>
                   );
                 })}

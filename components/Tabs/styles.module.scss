@@ -3,21 +3,35 @@
 }
 
 .tab {
+  position: relative;
   cursor: pointer;
-  background-color: #6f74fc;
   border-radius: 5px;
-  padding: 5px 24px;
   font-weight: 500;
   font-size: 18px;
-  line-height: 24px;
-  color: #444444;
-  margin-left: 10px;
+  line-height: 120%;
+  color: #7d7d7e;
+  margin-left: 30px;
+  transition: color 0.1s linear;
   &:first-child {
     margin-left: 0;
+  }
+  &:hover {
+    color: #6f74fc;
   }
 }
 
 .active {
-  color: #f2f4f8;
-  background-color: #6f74fc;
+  pointer-events: none;
+  color: #6f74fc;
+  &::after {
+    content: "";
+    width: 100%;
+    display: inline-flex;
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+    left: 0;
+    height: 2px;
+    background-color: #6f74fc;
+  }
 }

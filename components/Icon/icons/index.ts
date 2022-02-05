@@ -1,3 +1,5 @@
+import ArrowLeft from "./arrow-left.svg";
+import ArrowRight from "./arrow-right.svg";
 import Books from "./books.svg";
 import Fill from "./fill.svg";
 import Home from "./home.svg";
@@ -20,6 +22,8 @@ const icons = {
   telegram: Telegram,
   vk: VK,
   user: User,
+  "arrow-right": ArrowRight,
+  "arrow-left": ArrowLeft,
 } as const;
 
 type IconType = keyof typeof icons;

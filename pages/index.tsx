@@ -28,37 +28,8 @@ const Home: NextPage = (props) => {
       <Header />
 
       <Button>Hello</Button>
-
-      <Footer />
     </>
   );
 };
-
-// export async function getStaticProps() {
-//   const stringifiedParams = qs.stringify(
-//     {
-//       populate: {
-//         mainImage: {
-//           fields: "id",
-//         },
-//       },
-//     },
-//     {
-//       encodeValuesOnly: true,
-//     }
-//   );
-
-//   console.log(`http://localhost:1337/api/homepage?${stringifiedParams}`);
-
-//   const response = await fetch(
-//     `http://localhost:1337/api/homepage?${stringifiedParams}`,
-//     {
-//       method: "GET",
-//     }
-//   );
-//   const data = await response.json();
-
-//   return { props: { ...data } };
-// }
 
 export default Home;

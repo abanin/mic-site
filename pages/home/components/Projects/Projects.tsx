@@ -43,7 +43,9 @@ const Projects = () => {
       className={styles.projects}
     >
       <Tabs
+        className={styles.tabs}
         tabs={TABS}
+        defaultActiveTab={TABS[0]}
         keyAccessor={(tab) => tab}
         valueFormatter={(tab) => tab}
       />

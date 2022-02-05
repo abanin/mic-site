@@ -1,5 +1,6 @@
 import React from "react";
 
+import useFooterQuery from "api/useFooterQuery";
 import Container from "../Container";
 import Icon, { IconType } from "../Icon";
 import Link from "../Link";
@@ -7,21 +8,6 @@ import Logo from "../Logo";
 import SocialLinks from "../SocialLinks";
 
 import styles from "./styles.module.scss";
-
-const STAT = [
-  {
-    count: 153,
-    title: "Реализованные проекты",
-  },
-  {
-    count: 1050,
-    title: "Прошли курсы",
-  },
-  {
-    count: 685,
-    title: "Занимаются проектами",
-  },
-];
 
 const PAGES = [
   {
@@ -55,45 +41,65 @@ const PAGES = [
 ];
 
 const Footer = () => {
+  const footerQuery = useFooterQuery({
+    select: ({ data }) => data.attributes.footer,
+  });
+
   return (
     <footer className={styles.footer}>
       <Container>
         <Logo className={styles.logo} />
         <div className={styles.main}>
-          <ul className={styles.stat}>
-            {STAT.map((item) => {
-              return (
-                <li key={item.title} className={styles.statItem}>
-                  <span className={styles.statCount}>{item.count}</span>
-                  <span className={styles.statTitle}>{item.title}</span>
+          {footerQuery.isSuccess && (
+            <>
+              <ul className={styles.stat}>
+                <li className={styles.statItem}>
+                  <span className={styles.statCount}>
+                    {footerQuery.data.implementedProjectsCount}
+                  </span>
+                  <span className={styles.statTitle}>
+                    Реализованные проекты
+                  </span>
                 </li>
-              );
-            })}
-          </ul>
-          <ul className={styles.pages}>
-            {PAGES.map((page) => {
-              return (
-                <li key={page.href} className={styles.pageItem}>
-                  <Link className={styles.pageLink} href={page.href}>
-                    {page.title}
-                  </Link>
+                <li className={styles.statItem}>
+                  <span className={styles.statCount}>
+                    {footerQuery.data.peopleCompletedCoursesNumber}
+                  </span>
+                  <span className={styles.statTitle}>Прошли курсы</span>
                 </li>
-              );
-            })}
-          </ul>
-          <div className={styles.contacts}>
-            <SocialLinks />
-            <div className={styles.address}>
-              <Icon
-                size={32}
-                iconName="map-point"
-                className={styles.addressIcon}
-              />
-              <span className={styles.addressTitle}>
-                г. Москва, ул. 2-я <br /> Бауманская, д. 5, к. 5
-              </span>
-            </div>
-          </div>
+                <li className={styles.statItem}>
+                  <span className={styles.statCount}>
+                    {footerQuery.data.peopleInvolvedInProjectsNumber}
+                  </span>
+                  <span className={styles.statTitle}>Занимаются проектами</span>
+                </li>
+              </ul>
+              <ul className={styles.pages}>
+                {PAGES.map((page) => {
+                  return (
+                    <li key={page.href} className={styles.pageItem}>
+                      <Link className={styles.pageLink} href={page.href}>
+                        {page.title}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+              <div className={styles.contacts}>
+                <SocialLinks />
+                <div className={styles.address}>
+                  <Icon
+                    size={32}
+                    iconName="map-point"
+                    className={styles.addressIcon}
+                  />
+                  <span className={styles.addressTitle}>
+                    {footerQuery.data.address}
+                  </span>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </Container>
     </footer>

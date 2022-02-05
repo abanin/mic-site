@@ -26,34 +26,43 @@
 }
 
 .light {
-  .socialLink {
-    background-color: #f2f4f8;
-    &:hover {
-      background-color: #6f74fc;
-    }
-  }
   .socialItem {
     border: 1px solid transparent;
-    fill: #222222;
+    .socialLink {
+      background-color: #f2f4f8;
+    }
+    .svg {
+      fill: #2b2b2b;
+    }
     &:hover {
       border-color: #6f74fc;
-      fill: #f2f4f8;
+      .socialLink {
+        background-color: #6f74fc;
+      }
+      .svg {
+        fill: #f2f4f8;
+      }
     }
   }
 }
 
 .dark {
-  .socialLink {
-    background-color: #2b2b2b;
-    &:hover {
-      background-color: #6f74fc;
-    }
-  }
   .socialItem {
     border: 1px solid transparent;
-    fill: #f2f4f8;
+    .socialLink {
+      background-color: #2b2b2b;
+    }
+    .svg {
+      fill: #f2f4f8;
+    }
     &:hover {
       border-color: #6f74fc;
+      .socialLink {
+        background-color: #6f74fc;
+      }
+      .svg {
+        fill: #f2f4f8;
+      }
     }
   }
 }

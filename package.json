@@ -14,6 +14,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-loader-spinner": "^5.1.0",
+    "react-query": "^3.34.12",
     "swiper": "^7.4.1"
   },
   "devDependencies": {

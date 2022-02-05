@@ -2,6 +2,10 @@
   display: block;
 }
 
+.tabs {
+  margin-top: 40px;
+}
+
 .cards {
   margin-top: 30px;
   display: grid;
@@ -14,10 +18,12 @@
 }
 
 .desc {
+  margin: 0;
   display: block;
-  color: #7d7d7e;
   font-size: 14px;
   line-height: 140%;
+  text-align: center;
+  color: #7d7d7e;
 }
 
 .h3 {
@@ -25,5 +31,5 @@
 }
 
 .btn {
-  margin: 56px auto 0 auto;
+  margin: 40px auto 0 auto;
 }

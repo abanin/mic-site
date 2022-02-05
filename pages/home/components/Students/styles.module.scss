@@ -1,4 +1,5 @@
 .main {
+  margin-top: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -33,6 +34,10 @@
   color: #6f74fc;
 }
 
+.firstCount {
+  letter-spacing: 4px;
+}
+
 .image {
   display: inline-flex;
   align-items: center;
@@ -61,10 +66,24 @@
   width: 100%;
   padding: 30px;
   min-height: 180px;
+  transition: background-color 0.1s linear;
+  &:hover {
+    background-color: #6f74fc;
+    .title {
+      color: #ffffff;
+    }
+    .svg {
+      fill: #ffffff;
+    }
+  }
 }
 
 .icon {
   margin: 0 auto;
+}
+
+.svg {
+  fill: #6f74fc;
 }
 
 .title {
@@ -77,11 +96,58 @@
 }
 
 .h3 {
+  margin: 60px 0 30px 0;
   font-weight: 600;
   font-size: 24px;
   line-height: 120%;
   text-align: center;
   color: #2b2b2b;
+}
+
+.left {
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  transform: translateY(-50%);
+}
+
+.right {
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translateY(-50%);
+}
+
+.pagination {
+  position: absolute;
+  bottom: -20px !important;
+  left: 0;
+  text-align: center;
+}
+
+.dot {
+  cursor: pointer;
+  display: inline-flex;
+  border-radius: 100%;
+  margin-left: 15px;
+  width: 9px;
+  height: 9px;
+  background: #bfbfbf;
+  &:first-child {
+    margin-left: 0;
+  }
+}
+.dotActive {
+  pointer-events: none;
+  background: #6f74fc;
+}
+
+.swiper {
+  position: relative;
+  padding: 10px;
+  margin: -10px;
 }
 
 .swiperSlide {
@@ -91,8 +157,10 @@
 .story {
   position: relative;
   flex-direction: row;
-  padding: 30px;
-  box-shadow: none;
+  padding: 30px 30px 50px 30px;
+  background: #ffffff;
+  box-shadow: 0px 2px 10px 2px rgba(43, 43, 43, 0.15);
+  border-radius: 30px;
 }
 
 .avatar {

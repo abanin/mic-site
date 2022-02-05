@@ -46,7 +46,6 @@ const Icon = ({
       <IconComponent
         {...nativeProps}
         style={{ transform: `rotate(${rotate}deg)` }}
-        fill={fill}
         width={size}
         height={size}
         className={classNameSvg}

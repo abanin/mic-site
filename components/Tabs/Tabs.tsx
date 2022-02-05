@@ -14,8 +14,11 @@ const Tabs = <Value extends unknown>({
   tabs,
   onClick,
   className,
+  defaultActiveTab,
 }: TabsProps<Value>) => {
-  const [activeTabState, setActiveTabState] = useState<Value | null>(null);
+  const [activeTabState, setActiveTabState] = useState<Value | null>(
+    defaultActiveTab ?? null
+  );
   const activeTab = activeTabProp ?? activeTabState;
 
   return (
@@ -26,7 +29,11 @@ const Tabs = <Value extends unknown>({
         const value = valueFormatter ? valueFormatter(tab) : null;
         return (
           <Tab
-            active={activeTab && keyAccessor ? keyAccessor?.(activeTab) === key : false}
+            active={
+              activeTab && keyAccessor
+                ? keyAccessor?.(activeTab) === key
+                : false
+            }
             key={key}
             onClick={() => {
               setActiveTabState(tab);

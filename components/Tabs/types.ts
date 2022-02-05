@@ -28,4 +28,5 @@ type TabsAddProps<Value> =
 export type TabsProps<Value> = TabsAddProps<Value> & {
   className?: string;
   onClick?: (value: Value) => void;
+  defaultActiveTab?: Value;
 };
