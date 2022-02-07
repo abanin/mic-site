@@ -6,6 +6,8 @@ import Head from "next/head";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import keys from "api/keys";
+import projectKeys from "api/project/keys";
+import { getProjects } from "api/project/useProjectsQuery";
 import { getFooter } from "api/useFooterQuery";
 import List from "./components/List";
 import Main from "./components/Main";
@@ -32,7 +34,11 @@ const Projects: NextPage = () => {
 
 export const getStaticProps = async () => {
   const queryClient = new QueryClient();
-  await Promise.all([queryClient.prefetchQuery(keys.footer, getFooter)]);
+
+  await Promise.all([
+    queryClient.prefetchQuery(keys.footer, getFooter),
+    queryClient.prefetchQuery(projectKeys.allProjects, () => getProjects()),
+  ]);
 
   return {
     props: {

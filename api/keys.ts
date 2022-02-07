@@ -1,6 +1,6 @@
 const keys = {
-  footer: ["footer"],
-  homePage: ["homePage"],
+  footer: ["footer"] as const,
+  homePage: ["homePage"] as const,
 };
 
 export default keys;
