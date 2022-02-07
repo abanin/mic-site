@@ -1,9 +1,10 @@
 import React, { CSSProperties } from "react";
 import cn from "classnames";
+import Link from "next/link";
 
 import useFooterQuery, { FooterResponse } from "api/useFooterQuery";
 import Icon, { IconType } from "../Icon";
-import Link from "../Link";
+import StyledLink from "../StyledLink";
 
 import styles from "./styles.module.scss";
 
@@ -38,8 +39,10 @@ const SocialLink = ({ className, style, theme = "light" }: Props) => {
           const href = `${prefix}${socialLinksQuery.data[link.key]}`;
           return (
             <li key={link.key} className={styles.socialItem}>
-              <Link href={href} className={styles.socialLink}>
-                <Icon classNameSvg={styles.svg} iconName={link.iconName} />
+              <Link passHref href={href}>
+                <StyledLink className={styles.socialLink}>
+                  <Icon classNameSvg={styles.svg} iconName={link.iconName} />
+                </StyledLink>
               </Link>
             </li>
           );

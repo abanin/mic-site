@@ -5,6 +5,9 @@ import Link from "next/link";
 import Arrow from "@/components/Arrow";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
+import CardActions from "@/components/CardActions";
+import CardContent from "@/components/CardContent";
+import CardMedia from "@/components/CardMedia";
 import Icon from "@/components/Icon";
 import Section from "@/components/Section";
 import EquipmentPng from "./equipment.png";
@@ -41,14 +44,13 @@ const Equipment = () => {
         {EQUIPMENT.map(({ title, imgSrc }) => {
           return (
             <Card key={title} className={styles.card}>
-              <Image
-                height={140}
-                width={270}
-                className={styles.img}
+              <CardMedia
+                layout="fill"
+                variant="wide"
                 src={imgSrc.src}
                 alt="equipment"
               />
-              <div className={styles.content}>
+              <CardContent>
                 <div className={styles.title}>Название оборудования</div>
                 <p className={styles.desc}>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -56,10 +58,12 @@ const Equipment = () => {
                   consequatur cum nihil ab unde sunt laborum. Nesciunt doloribus
                   consequuntur optio repellat! Accusantium.
                 </p>
-                <Link href="#">
-                  <Arrow right />
-                </Link>
-              </div>
+                <CardActions>
+                  <Link passHref href="#">
+                    <Arrow right />
+                  </Link>
+                </CardActions>
+              </CardContent>
             </Card>
           );
         })}

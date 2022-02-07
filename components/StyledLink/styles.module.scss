@@ -2,8 +2,11 @@
   display: inline-block;
   font-weight: inherit;
   font-size: inherit;
-  color: #6f74fc;
   transition: color 0.1s linear;
+}
+
+.primary {
+  color: #6f74fc;
   &:hover {
     color: darken(#6f74fc, 10%);
   }

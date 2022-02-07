@@ -1,11 +1,12 @@
 import React from "react";
+import Link from "next/link";
 
 import useFooterQuery from "api/useFooterQuery";
 import Container from "../Container";
 import Icon, { IconType } from "../Icon";
-import Link from "../Link";
 import Logo from "../Logo";
 import SocialLinks from "../SocialLinks";
+import StyledLink from "../StyledLink";
 
 import styles from "./styles.module.scss";
 
@@ -78,8 +79,10 @@ const Footer = () => {
                 {PAGES.map((page) => {
                   return (
                     <li key={page.href} className={styles.pageItem}>
-                      <Link className={styles.pageLink} href={page.href}>
-                        {page.title}
+                      <Link passHref href={page.href}>
+                        <StyledLink className={styles.pageLink}>
+                          {page.title}
+                        </StyledLink>
                       </Link>
                     </li>
                   );

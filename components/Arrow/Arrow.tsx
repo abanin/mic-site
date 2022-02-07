@@ -22,7 +22,10 @@ type Props = {
 const Arrow = forwardRef<HTMLDivElement, Props>(({ left, className }, ref) => {
   return (
     <div ref={ref} className={cn(styles.arrow, className)}>
-      <Icon iconName={left ? "arrow-left" : "arrow-right"} />
+      <Icon
+        classNameSvg={styles.svg}
+        iconName={left ? "arrow-left" : "arrow-right"}
+      />
     </div>
   );
 });

@@ -1,0 +1,62 @@
+.list {
+  margin: 0;
+  padding: 0;
+  display: gird;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 30px;
+}
+
+.input {
+  display: inline-flex;
+  padding: 14px 20px;
+  background: #ffffff;
+  border: 1px solid #555555;
+  box-sizing: border-box;
+  border-radius: 30px;
+  font-size: 16px;
+  line-height: 20px;
+  &::placeholder {
+    font-size: 16px;
+    line-height: 20px;
+    color: #7d7d7d;
+  }
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+.controls {
+  margin-top: 30px;
+}
+
+.list {
+  margin: 40px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.title {
+  display: block;
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  color: #2b2b2b;
+}
+
+.desc {
+  margin: 10px 0 0 0;
+  display: block;
+  font-size: 14px;
+  line-height: 140%;
+  text-align: center;
+  color: #7d7d7e;
+}
+
+.btn {
+  margin: 40px auto 90px;
+}

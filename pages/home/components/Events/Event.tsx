@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import Card from "@/components/Card";
-import Link from "@/components/Link";
 import Section from "@/components/Section";
+import StyledLink from "@/components/StyledLink";
 import QuadrocopterPng from "./quadro.png";
 
 import styles from "./styles.module.scss";
@@ -114,15 +115,17 @@ const Events = () => {
                 {type.events.map((event) => {
                   return (
                     <li key={event.name} className={styles.event}>
-                      <Link className={styles.link} href={event.href}>
-                        {event.name}
+                      <Link passHref href={event.href}>
+                        <StyledLink className={styles.link}>
+                          {event.name}
+                        </StyledLink>
                       </Link>
                     </li>
                   );
                 })}
               </ul>
-              <Link href="#" className={styles.link}>
-                Смотреть все
+              <Link passHref href="#">
+                <StyledLink className={styles.link}>Смотреть все</StyledLink>
               </Link>
               <div className={styles.image}>
                 <Image

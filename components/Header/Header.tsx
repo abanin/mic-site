@@ -1,10 +1,11 @@
 import React, { CSSProperties } from "react";
 import cn from "classnames";
+import Link from "next/link";
 
 import Container from "../Container";
 import Icon from "../Icon";
-import Link from "../Link";
 import Logo from "../Logo";
+import StyledLink from "../StyledLink";
 
 import styles from "./styles.module.scss";
 
@@ -54,15 +55,19 @@ const Header = ({ className, style }: Props) => {
           {visibleItems.map((item) => {
             return (
               <li key={item.href} className={styles.item}>
-                <Link className={styles.navLink} href={item.href}>
-                  {item.title}
+                <Link passHref href={item.href}>
+                  <StyledLink className={styles.navLink}>
+                    {item.title}
+                  </StyledLink>
                 </Link>
               </li>
             );
           })}
         </ul>
-        <Link href="#lk" className={styles.user}>
-          <Icon iconName="user" />
+        <Link passHref href="#lk">
+          <StyledLink className={styles.user}>
+            <Icon classNameSvg={styles.svg} iconName="user" />
+          </StyledLink>
         </Link>
       </Container>
     </nav>

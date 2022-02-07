@@ -10,6 +10,16 @@ const nextConfig = {
 
     return config;
   },
+
+  redirects: async () => {
+    return [
+      {
+        source: "/",
+        destination: "/home",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 // next.config.js

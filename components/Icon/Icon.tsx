@@ -48,7 +48,7 @@ const Icon = ({
         style={{ transform: `rotate(${rotate}deg)` }}
         width={size}
         height={size}
-        className={classNameSvg}
+        className={cn(classNameSvg, styles.svg)}
         data-testid="svg-element"
       />
     </span>

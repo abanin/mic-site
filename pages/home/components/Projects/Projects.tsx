@@ -39,6 +39,7 @@ const Projects = () => {
   return (
     <Section
       title="Проекты"
+      titleHref="/projects"
       desc="Идеи, которые воплощаются в жизнь"
       className={styles.projects}
     >
