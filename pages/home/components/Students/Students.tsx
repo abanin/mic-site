@@ -1,11 +1,13 @@
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
-import React from "react";
+import React, { useRef, useState } from "react";
+import { useMedia } from "react-use";
 import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
-import { Navigation, Pagination } from "swiper";
+import SwiperInstance, { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import Arrow from "@/components/Arrow";
@@ -15,6 +17,9 @@ import H3 from "@/components/H3";
 import Icon, { IconType } from "@/components/Icon";
 import Section from "@/components/Section";
 import StyledLink from "@/components/StyledLink";
+import SwiperPagination, {
+  stylesPagination,
+} from "@/components/SwiperPagination";
 import AvatarPng from "./avatar.png";
 
 import styles from "./styles.module.scss";
@@ -41,19 +46,28 @@ const LINKS: { iconName: IconType; title: string; href: string }[] = [
 ];
 
 const Students = () => {
+  const [el, setEl] = useState<HTMLDivElement | null>(null);
+  const isMobile = useMedia("(max-width: 992px)", false);
+
+  const checkArrow = (swiper: SwiperInstance) => {
+    if (isMobile) {
+      swiper.navigation.prevEl.style.display = "none";
+      swiper.navigation.nextEl.style.display = "none";
+    } else {
+      swiper.navigation.prevEl.style.display = "inline-flex";
+      swiper.navigation.nextEl.style.display = "inline-flex";
+    }
+  };
+
   return (
     <Section
+      id="student"
       title="Студенту"
       desc="Присоединяясь к нашему центру, ты получаешь возможность"
     >
       <div className={styles.main}>
         <div className={styles.image}>
-          <Image
-            width={371}
-            height={354}
-            src="/home/students.svg"
-            alt="students"
-          />
+          <Image layout="fill" src="/home/students.svg" alt="students" />
         </div>
 
         <ul className={styles.featureList}>
@@ -95,41 +109,47 @@ const Students = () => {
       <H3 className={styles.h3}>Истории наших выпускников</H3>
 
       <div style={{ position: "relative" }}>
-        <Arrow left className={styles.left} />
-        <Arrow right className={styles.right} />
-        <div className={styles.pagination} />
-        <Swiper
-          modules={[Navigation, Pagination]}
-          navigation={{
-            prevEl: `.${styles.left}`,
-            nextEl: `.${styles.right}`,
-          }}
-          pagination={{
-            el: `.${styles.pagination}`,
-            type: "bullets",
-            bulletClass: styles.dot,
-            bulletActiveClass: styles.dotActive,
-            clickable: true,
-          }}
-          className={styles.swiper}
-          spaceBetween={50}
-          slidesPerView={1}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
-        >
-          <SwiperSlide className={styles.swiperSlide}>
-            <Card className={styles.story}>
-              <div className={styles.avatar}>
-                <Image
-                  width={120}
-                  height={120}
-                  src={AvatarPng.src}
-                  alt="avatar"
-                />
-              </div>
-              <div className={styles.info}>
-                <span className={styles.name}>Фамилия Имя Отчество</span>
-                <span className={styles.job}>Специальность</span>
+        {!isMobile && (
+          <>
+            <Arrow left className={styles.left} />
+            <Arrow right className={styles.right} />
+          </>
+        )}
+
+        {el && (
+          <Swiper
+            onInit={checkArrow}
+            onResize={checkArrow}
+            modules={[Navigation, Pagination]}
+            pagination={{
+              el,
+              currentClass: "",
+              type: "bullets",
+              bulletClass: stylesPagination.dot,
+              bulletActiveClass: stylesPagination.dotActive,
+              clickable: true,
+            }}
+            className={styles.swiper}
+            spaceBetween={50}
+            slidesPerView={1}
+            navigation={{
+              prevEl: `.${styles.left}`,
+              nextEl: `.${styles.right}`,
+            }}
+          >
+            <SwiperSlide className={styles.swiperSlide}>
+              <Card className={styles.story}>
+                <div className={styles.info}>
+                  <div className={styles.avatar}>
+                    <div className={styles.avatarImage}>
+                      <Image layout="fill" src={AvatarPng.src} alt="avatar" />
+                    </div>
+                  </div>
+                  <div>
+                    <span className={styles.name}>Фамилия Имя Отчество</span>
+                    <span className={styles.job}>Специальность</span>
+                  </div>
+                </div>
                 <p className={styles.desc}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget
                   nisl, in consectetur est suscipit venenatis facilisis.
@@ -143,23 +163,22 @@ const Students = () => {
                   posuere id. Non consectetur leo quis feugiat non, senectus eu.
                   Convallis.
                 </p>
-              </div>
-              <Button className={styles.btn}>Подробнее</Button>
-            </Card>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card className={styles.story}>
-              <div className={styles.avatar}>
-                <Image
-                  width={120}
-                  height={120}
-                  src={AvatarPng.src}
-                  alt="avatar"
-                />
-              </div>
-              <div className={styles.info}>
-                <span className={styles.name}>Фамилия Имя Отчество</span>
-                <span className={styles.job}>Специальность</span>
+                <Button className={styles.btn}>Подробнее</Button>
+              </Card>
+            </SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}>
+              <Card className={styles.story}>
+                <div className={styles.info}>
+                  <div className={styles.avatar}>
+                    <div className={styles.avatarImage}>
+                      <Image layout="fill" src={AvatarPng.src} alt="avatar" />
+                    </div>
+                  </div>
+                  <div>
+                    <span className={styles.name}>Фамилия Имя Отчество</span>
+                    <span className={styles.job}>Специальность</span>
+                  </div>
+                </div>
                 <p className={styles.desc}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget
                   nisl, in consectetur est suscipit venenatis facilisis.
@@ -173,11 +192,16 @@ const Students = () => {
                   posuere id. Non consectetur leo quis feugiat non, senectus eu.
                   Convallis.
                 </p>
-              </div>
-              <Button className={styles.btn}>Подробнее</Button>
-            </Card>
-          </SwiperSlide>
-        </Swiper>
+                <Button className={styles.btn}>Подробнее</Button>
+              </Card>
+            </SwiperSlide>
+          </Swiper>
+        )}
+        <SwiperPagination
+          ref={(element) => {
+            setEl(element);
+          }}
+        />
       </div>
     </Section>
   );

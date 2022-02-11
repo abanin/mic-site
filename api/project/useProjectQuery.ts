@@ -3,32 +3,7 @@ import createUrl from "helpers/createUrl";
 import { StrapiResponseArrayWithPaging } from "types";
 
 import keys from "./keys";
-
-export type Project = {
-  status: "completed" | "WIP" | "order";
-  name: string;
-  description: string;
-  content: string;
-  Slug: null | string;
-  previewImage: {
-    data: {
-      id: number;
-      attributes: {
-        url: string;
-        name: string;
-      };
-    };
-  };
-  image: {
-    data: {
-      id: number;
-      attributes: {
-        url: string;
-        name: string;
-      };
-    };
-  };
-};
+import { Project } from "./types";
 
 type ProjectResponse = StrapiResponseArrayWithPaging<Project>;
 
@@ -55,7 +30,7 @@ export const getProject = async <T = ProjectResponse>(slug: string) => {
     }
   );
 
-  return (await response.json()) as Promise<T>;
+  return response.json() as Promise<T>;
 };
 
 export const useProjectQuery = <

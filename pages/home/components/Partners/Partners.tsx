@@ -15,14 +15,13 @@ const Partners: FC<Props> = () => {
     <section className={styles.partners}>
       <Container>
         <Card className={styles.card}>
-          <H2>Партнёрам</H2>
+          <H2 className={styles.h2}>Партнёрам</H2>
           <p className={styles.desc}>
             Вы можете оставить заявку на разработку и реализацию проекта или
             детали на платформе МИЦ. Таким образом талантливые студенты получают
             практический бесценный опыт, а заказчик уникальный проект по цене
             ниже рыночной
           </p>
-          <Button className={styles.btn}>Создать запрос на проект</Button>
           <div className={styles.img}>
             <Image
               width={250}
@@ -31,6 +30,7 @@ const Partners: FC<Props> = () => {
               alt="partners"
             />
           </div>
+          <Button className={styles.btn}>Создать запрос на проект</Button>
         </Card>
       </Container>
     </section>

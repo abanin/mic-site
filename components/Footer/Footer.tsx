@@ -1,9 +1,10 @@
 import React from "react";
+import classNames from "classnames";
 import Link from "next/link";
 
 import useFooterQuery from "api/useFooterQuery";
 import Container from "../Container";
-import Icon, { IconType } from "../Icon";
+import Icon from "../Icon";
 import Logo from "../Logo";
 import SocialLinks from "../SocialLinks";
 import StyledLink from "../StyledLink";
@@ -41,14 +42,18 @@ const PAGES = [
   },
 ];
 
-const Footer = () => {
+type Props = {
+  className?: string;
+};
+
+const Footer = ({ className }: Props) => {
   const footerQuery = useFooterQuery({
     select: ({ data }) => data.attributes.footer,
   });
 
   return (
-    <footer className={styles.footer}>
-      <Container>
+    <footer className={classNames(styles.footer, className)}>
+      <Container className={styles.container}>
         <Logo className={styles.logo} />
         <div className={styles.main}>
           {footerQuery.isSuccess && (

@@ -7,10 +7,15 @@
   flex-direction: row;
   position: relative;
   padding: 30px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding-bottom: 0;
+  }
 }
 
 .info {
-  display: block;
+  display: inline-flex;
+  flex-direction: column;
 }
 
 .h3 {
@@ -20,21 +25,39 @@
   font-size: 24px;
   line-height: 120%;
   color: #2b2b2b;
+  @media screen and (max-width: 768px) {
+    text-align: center;
+  }
+}
+
+.social {
+  @media screen and (max-width: 768px) {
+    margin: 20px auto 14px auto;
+  }
 }
 
 .image {
+  display: flex;
   position: absolute;
   left: 30px;
   bottom: 0;
+  @media screen and (max-width: 768px) {
+    margin-top: auto;
+    position: static;
+    margin: 30px auto 0 auto;
+  }
 }
 
 .map {
   outline: none;
   display: flex;
-  margin-left: auto;
+  margin: auto 0 auto auto;
   overflow: hidden;
   border: 1px solid #6f74fc;
   border-radius: 30px;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .yandexHref {

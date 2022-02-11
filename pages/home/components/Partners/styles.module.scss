@@ -11,6 +11,16 @@
     rgba(137, 85, 253, 0.3) 0%,
     rgba(84, 148, 251, 0.3) 100%
   );
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+  }
+}
+
+.h2 {
+  @media screen and (max-width: 768px) {
+    text-align: center;
+  }
 }
 
 .desc {
@@ -20,10 +30,18 @@
   font-size: 20px;
   line-height: 140%;
   color: #555555;
+  @media screen and (max-width: 768px) {
+    text-align: center;
+    font-size: 14px;
+    line-height: 140%;
+  }
 }
 
 .btn {
   margin: 35px auto 0 0;
+  @media screen and (max-width: 768px) {
+    margin: 35px auto 0 auto;
+  }
 }
 
 .img {
@@ -31,4 +49,11 @@
   top: 50%;
   right: 10%;
   transform: translateY(-50%);
+  @media screen and (max-width: 768px) {
+    margin: 20px 0 0 0;
+    position: static;
+    top: unset;
+    right: unset;
+    transform: unset;
+  }
 }

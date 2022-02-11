@@ -32,8 +32,14 @@ const Section: FC<
 
   return (
     <section className={cn(styles.section, className)} {...props}>
-      <Container>
-        {wrapIntoLink(typeof title === "string" ? <H2>{title}</H2> : title)}
+      <Container className={styles.container}>
+        {wrapIntoLink(
+          typeof title === "string" ? (
+            <H2 className={styles.h2}>{title}</H2>
+          ) : (
+            title
+          )
+        )}
         {typeof desc === "string" ? (
           <p className={styles.desc}>{desc}</p>
         ) : (

@@ -18,6 +18,11 @@
   &:hover {
     color: #6f74fc;
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+    line-height: 120%;
+  }
 }
 
 .active {

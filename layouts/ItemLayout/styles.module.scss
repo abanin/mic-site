@@ -1,27 +1,26 @@
-.article {
-  position: relative;
+.itemPage {
+  padding: 60px 0 0 90px;
   display: grid;
   grid-template-columns: 270px 1fr;
   column-gap: 30px;
-  padding: 60px 0 90px 0;
 }
 
-.sidebar {
-  position: sticky;
-  top: 0;
+.info {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-.btn {
+.actions {
+  display: block;
   margin: 40px auto 0 auto;
 }
 
-.post {
+.contentWrapper {
   display: block;
 }
 
-.category {
+.desc {
   display: block;
   margin-top: 15px;
   font-size: 18px;
@@ -34,4 +33,10 @@
   font-size: 16px;
   line-height: 140%;
   color: #2b2b2b;
+}
+
+.image {
+  position: relative;
+  height: 270px;
+  width: 270px;
 }

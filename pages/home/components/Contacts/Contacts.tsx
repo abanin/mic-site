@@ -13,15 +13,10 @@ const Contacts = () => {
       <Card className={styles.card}>
         <div className={styles.info}>
           <h3 className={styles.h3}>У вас остались вопросы?</h3>
-          <SocialLinks theme="dark" style={{ marginTop: 24 }} />
-        </div>
-
-        <div className={styles.image}>
-          <Image
-            width={418}
-            height={248}
-            src="/home/contacts.svg"
-            alt="picture"
+          <SocialLinks
+            className={styles.social}
+            theme="dark"
+            style={{ marginTop: 24 }}
           />
         </div>
 
@@ -53,6 +48,15 @@ const Contacts = () => {
             allowFullScreen={true}
             style={{ position: "relative" }}
           ></iframe>
+        </div>
+
+        <div className={styles.image}>
+          <Image
+            width={418}
+            height={248}
+            src="/home/contacts.svg"
+            alt="picture"
+          />
         </div>
       </Card>
     </Section>

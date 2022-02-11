@@ -1,23 +1,41 @@
 import React from "react";
 import { dehydrate, QueryClient } from "react-query";
+import ItemLayout from "layouts/ItemLayout";
 import { GetStaticProps } from "next";
+import { useRouter } from "next/router";
 
+import Button from "@/components/Button";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import keys from "api/keys";
 import projectKeys from "api/project/keys";
-import { getProject } from "api/project/useProjectQuery";
+import { getProject, useProjectQuery } from "api/project/useProjectQuery";
 import { getProjects } from "api/project/useProjectsQuery";
 import { getFooter } from "api/useFooterQuery";
-import Article from "./components/Article";
 import Equipment from "./components/Equipment";
+import ImagePng from "./image.png";
 
 const Project = () => {
+  const router = useRouter();
+  const slug = typeof router.query.slug === "string" ? router.query.slug : "";
+  const projectQuery = useProjectQuery(slug, {
+    select: ({ data }) => data[0].attributes,
+  });
+
+  if (!projectQuery.isSuccess) return null;
+
   return (
     <>
       <Header />
-      <Article />
-      <Equipment />
+      <ItemLayout
+        title={projectQuery.data.name}
+        desc={projectQuery.data.description}
+        mainImageSrc={ImagePng.src}
+        content={projectQuery.data.content}
+        renderActions={() => <Button>Создать свой проект</Button>}
+      >
+        <Equipment />
+      </ItemLayout>
       <Footer />
     </>
   );

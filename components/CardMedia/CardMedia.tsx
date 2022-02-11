@@ -6,20 +6,14 @@ import styles from "./styles.module.scss";
 
 type Props = {
   className?: string;
-  variant?: "normal" | "wide";
   alt: string;
 } & ImageProps;
 
-const CardMedia: FC<Props> = ({
-  className,
-  alt,
-  variant = "normal",
-  ...props
-}) => {
-  const cls = cn(styles.cardMedia, className, styles[variant]);
+const CardMedia: FC<Props> = ({ className, alt, ...props }) => {
+  const cls = cn(styles.cardMedia, className);
   return (
     <div className={cls}>
-      <Image alt={alt} {...props} />
+      <Image layout="fill" alt={alt} {...props} />
     </div>
   );
 };

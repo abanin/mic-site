@@ -1,5 +1,7 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useState } from "react";
+import { useMedia } from "react-use";
 import cn from "classnames";
+import Hamburger from "hamburger-react";
 import Link from "next/link";
 
 import Container from "../Container";
@@ -29,7 +31,7 @@ const PAGES = [
   },
   {
     title: "Студенту",
-    href: "/students",
+    href: "/home#student",
   },
   {
     title: "Лаборатории",
@@ -47,28 +49,42 @@ const PAGES = [
 
 const Header = ({ className, style }: Props) => {
   const visibleItems = PAGES;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const isMobileMenuVisible = useMedia("(max-width: 992px)", false);
+
   return (
     <nav style={style} className={cn(className, styles.nav)}>
       <Container className={styles.container}>
         <Logo className={styles.logo} />
-        <ul className={styles.list}>
-          {visibleItems.map((item) => {
-            return (
-              <li key={item.href} className={styles.item}>
-                <Link passHref href={item.href}>
-                  <StyledLink className={styles.navLink}>
-                    {item.title}
-                  </StyledLink>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-        <Link passHref href="#lk">
-          <StyledLink className={styles.user}>
-            <Icon classNameSvg={styles.svg} iconName="user" />
-          </StyledLink>
-        </Link>
+        {!isMobileMenuVisible && (
+          <ul className={styles.list}>
+            {visibleItems.map((item) => {
+              return (
+                <li key={item.href} className={styles.item}>
+                  <Link passHref href={item.href}>
+                    <StyledLink className={styles.navLink}>
+                      {item.title}
+                    </StyledLink>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+
+        <div className={styles.buttons}>
+          {isMobileMenuVisible && (
+            <div className={styles.hamburger}>
+              <Hamburger toggled={isOpen} toggle={setIsOpen} />
+            </div>
+          )}
+          <Link passHref href="#lk">
+            <StyledLink className={styles.user}>
+              <Icon classNameSvg={styles.svg} iconName="user" />
+            </StyledLink>
+          </Link>
+        </div>
       </Container>
     </nav>
   );

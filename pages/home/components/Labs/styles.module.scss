@@ -2,18 +2,21 @@
   display: block;
 }
 
-.labList {
-  margin-top: 40px;
-  display: grid;
-  min-height: 270px;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 30px;
+.swiper {
+  position: relative;
+  padding: 10px;
+  margin: 12px -10px -10px -10px;
 }
 
-.lab {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+.swiperSlide {
+  background-color: transparent;
+}
+
+.desc {
+  font-size: 14px;
+  line-height: 140%;
+  text-align: center;
+  color: #7d7d7d;
 }
 
 .panel {

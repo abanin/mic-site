@@ -1,0 +1,21 @@
+.pagination {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.dot {
+  cursor: pointer;
+  display: inline-flex;
+  border-radius: 100%;
+  margin-left: 15px;
+  width: 9px;
+  height: 9px;
+  background: #bfbfbf;
+  &:first-child {
+    margin-left: 0;
+  }
+}
+.dotActive {
+  pointer-events: none;
+  background: #6f74fc;
+}
