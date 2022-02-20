@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from "react";
+import ReactMarkdown from "react-markdown";
 import cn from "classnames";
 import Image from "next/image";
 
@@ -45,7 +46,9 @@ const ItemLayout: FC<Props> = ({
           ) : (
             desc
           )}
-          <div className={styles.content}>{content}</div>
+          <div className={styles.content}>
+            <ReactMarkdown>{content}</ReactMarkdown>
+          </div>
         </div>
       </Container>
       {children}

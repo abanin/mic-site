@@ -15,94 +15,25 @@ import StyledLink from "@/components/StyledLink";
 import SwiperPagination, {
   stylesPagination,
 } from "@/components/SwiperPagination";
-import QuadrocopterPng from "./quadro.png";
 
 import styles from "./styles.module.scss";
 
 const EVENTS_TYPES = [
   {
     title: "Мероприятия МИЦ",
-    events: [
-      {
-        name: "Мероприятие 1",
-        href: "#",
-      },
-      {
-        name: "Мероприятие 2",
-        href: "#",
-      },
-      {
-        name: "Мероприятие 3",
-        href: "#",
-      },
-      {
-        name: "Мероприятие 4",
-        href: "#",
-      },
-    ],
+    image: "/home/badge.png",
   },
   {
     title: "Олимпиады и конференции",
-    events: [
-      {
-        name: "Олимпиада 1",
-        href: "#",
-      },
-      {
-        name: "Олимпиада 2",
-        href: "#",
-      },
-      {
-        name: "Олимпиада 3",
-        href: "#",
-      },
-      {
-        name: "Олимпиада 4",
-        href: "#",
-      },
-    ],
+    image: "/home/pen.png",
   },
   {
     title: "Проектные конкурсы",
-    events: [
-      {
-        name: "Конкурс 1",
-        href: "#",
-      },
-      {
-        name: "Конкурс 2",
-        href: "#",
-      },
-      {
-        name: "Конкурс 3",
-        href: "#",
-      },
-      {
-        name: "Конкурс 4",
-        href: "#",
-      },
-    ],
+    image: "/home/quadro.png",
   },
   {
     title: "Образовательные программы",
-    events: [
-      {
-        name: "Онлайн-курсы",
-        href: "#",
-      },
-      {
-        name: "Программа 1",
-        href: "#",
-      },
-      {
-        name: "Программа 2",
-        href: "#",
-      },
-      {
-        name: "Программа 3",
-        href: "#",
-      },
-    ],
+    image: "/home/book.png",
   },
 ];
 
@@ -127,7 +58,7 @@ const Events = () => {
               >
                 <span className={styles.title}>{type.title}</span>
                 <ul className={styles.eventList}>
-                  {type.events.map((event) => {
+                  {/* {type.events.map((event) => {
                     return (
                       <li key={event.name} className={styles.event}>
                         <Link passHref href={event.href}>
@@ -137,18 +68,13 @@ const Events = () => {
                         </Link>
                       </li>
                     );
-                  })}
+                  })} */}
                 </ul>
                 <Link passHref href="#">
                   <StyledLink className={styles.link}>Смотреть все</StyledLink>
                 </Link>
                 <div className={styles.image}>
-                  <Image
-                    width={210}
-                    height={119}
-                    src={QuadrocopterPng.src}
-                    alt="quadro"
-                  />
+                  <Image layout="fill" src={type.image} alt={type.title} />
                 </div>
               </Card>
             );
@@ -191,19 +117,7 @@ const Events = () => {
                       }}
                     >
                       <span className={styles.title}>{type.title}</span>
-                      <ul className={styles.eventList}>
-                        {type.events.map((event) => {
-                          return (
-                            <li key={event.name} className={styles.event}>
-                              <Link passHref href={event.href}>
-                                <StyledLink className={styles.link}>
-                                  {event.name}
-                                </StyledLink>
-                              </Link>
-                            </li>
-                          );
-                        })}
-                      </ul>
+                      <ul className={styles.eventList}></ul>
                       <Link passHref href="#">
                         <StyledLink className={styles.link}>
                           Смотреть все
@@ -211,10 +125,9 @@ const Events = () => {
                       </Link>
                       <div className={styles.image}>
                         <Image
-                          width={210}
-                          height={119}
-                          src={QuadrocopterPng.src}
-                          alt="quadro"
+                          layout="fill"
+                          src={type.image}
+                          alt={type.title}
                         />
                       </div>
                     </Card>

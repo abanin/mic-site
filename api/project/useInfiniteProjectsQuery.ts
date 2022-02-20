@@ -9,8 +9,10 @@ export type ProjectResponse = StrapiResponseArrayWithPaging<Project>;
 
 type Params = {
   page: number;
+  pageSize?: number;
   requestParams?: {
     searchValue?: string;
+    status?: "completed" | "WIP";
   };
 };
 
@@ -18,22 +20,25 @@ export const getInfiniteProjects = async <T = ProjectResponse>(
   params: Params,
   selector?: (data: ProjectResponse) => T
 ) => {
-  const { page, requestParams = {} } = params;
+  const { page, pageSize = 4, requestParams = {} } = params;
 
-  console.log(requestParams);
   const response = await fetch(
     createUrl("/projects", {
       filters: {
         name: {
-          $eq: requestParams.searchValue,
+          $containsi: requestParams.searchValue,
+        },
+        status: {
+          $eq: requestParams.status,
         },
       },
       pagination: {
         page: page,
-        pageSize: 8,
+        pageSize: pageSize,
       },
       fields: ["status", "name", "description", "content", "slug", "Slug"],
       populate: {
+        categories: "*",
         previewImage: {
           fields: ["url", "name"],
         },
@@ -55,7 +60,10 @@ export const useInfiniteProjectsQuery = (
   requestParams?: Params["requestParams"]
 ) => {
   return useInfiniteQuery<ProjectResponse, Error, ProjectResponse>(
-    keys.infinity(requestParams?.searchValue ?? ""),
+    keys.infinity(
+      requestParams?.searchValue ?? "",
+      requestParams?.status ?? "completed"
+    ),
     {
       queryFn: ({ pageParam = 1 }) => {
         return getInfiniteProjects({

@@ -14,6 +14,7 @@ import Container from "@/components/Container";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Input from "@/components/Input";
+import { MultiSelect } from "@/components/Select";
 import Tabs from "@/components/Tabs";
 import keys from "api/keys";
 import projectKeys from "api/project/keys";
@@ -23,6 +24,9 @@ import {
   useInfiniteProjectsQuery,
 } from "api/project/useInfiniteProjectsQuery";
 import { getFooter } from "api/useFooterQuery";
+import useProjectCategoriesQuery, {
+  getProjectCategories,
+} from "api/useProjectCategories";
 
 import styles from "./index.module.scss";
 
@@ -44,7 +48,16 @@ const renderItem = (item: Project) => (
   </Link>
 );
 
-const TABS = ["Завершённые", "В разработке", "Заявки на проекты"];
+const TABS = [
+  {
+    title: "Завершённые",
+    value: "completed" as const,
+  },
+  {
+    title: "В разработке",
+    value: "WIP" as const,
+  },
+];
 
 const Projects: NextPage = () => {
   const [state, setState] = useReducerAsState<State>({
@@ -53,14 +66,21 @@ const Projects: NextPage = () => {
     status: "completed",
   });
 
-  const { searchValue, debouncedSearchValue } = state;
+  const { searchValue, debouncedSearchValue, status } = state;
 
   useDebounce(() => setState({ debouncedSearchValue: searchValue }), 1000, [
     searchValue,
   ]);
 
+  const projectCategoriesQuery = useProjectCategoriesQuery({
+    select: ({ data }) => data.map(({ attributes }) => attributes),
+  });
+
+  console.log(projectCategoriesQuery);
+
   const infProjectsQuery = useInfiniteProjectsQuery({
     searchValue: debouncedSearchValue,
+    status,
   });
 
   const items = infProjectsQuery.data?.pages
@@ -82,14 +102,18 @@ const Projects: NextPage = () => {
       <MainLayout
         className={styles.main}
         title="Проекты наших студентов"
-        btn={<Button>Создать запрос на проект</Button>}
+        cardDesc="На базе Молодежного Инженерного Центра каждый студент МГТУ им. Н.Э. Баумана может реализовать свой проект : от идеи до первых продаж. Самое время переходить от мечтаний к делу, становясь частью инженерного сообщества"
+        btn={<Button>Создать свой проект</Button>}
       />
       <Container style={{ marginTop: 40 }}>
         <Tabs
           tabs={TABS}
           defaultActiveTab={TABS[0]}
-          keyAccessor={(tab) => tab}
-          valueFormatter={(tab) => tab}
+          keyAccessor={(tab) => tab.value}
+          valueFormatter={(tab) => tab.title}
+          onClick={(tab) => {
+            setState({ status: tab.value });
+          }}
         />
         <div className={styles.controls}>
           <Input
@@ -98,7 +122,19 @@ const Projects: NextPage = () => {
             value={searchValue}
             onChange={(e) => setState({ searchValue: e.target.value })}
           />
-          <Input placeholder="Поиск по названию" />
+          {projectCategoriesQuery.isSuccess && (
+            <MultiSelect
+              options={projectCategoriesQuery.data}
+              optionFormatter={(option) => option.name}
+              valueFormatter={(options) =>
+                options.length ? `Выбрано: ${options.length}` : "Категории"
+              }
+              keyAccessor={(option) => option.type}
+              onChange={() => {
+                console.log("");
+              }}
+            />
+          )}
         </div>
       </Container>
       <ListLayout
@@ -118,7 +154,8 @@ export const getStaticProps = async () => {
 
   await Promise.all([
     queryClient.prefetchQuery(keys.footer, getFooter),
-    queryClient.prefetchQuery(projectKeys.infinity(""), () =>
+    queryClient.prefetchQuery(keys.projectCategories, getProjectCategories),
+    queryClient.prefetchQuery(projectKeys.infinity("", "completed"), () =>
       getInfiniteProjects({ page: 1 }, (data) => ({
         pages: [data],
         pageParam: [data.meta.pagination.page],

@@ -33,7 +33,7 @@ export async function getStaticPaths() {
     paths: [
       {
         params: {
-          id: "1",
+          slug: "1",
         },
       },
     ],

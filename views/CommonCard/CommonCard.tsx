@@ -20,7 +20,7 @@ type Props = {
 const CommonCard: FC<Props> = ({
   className,
   style,
-  mediaSrc,
+  mediaSrc = "",
   title,
   desc,
   children,

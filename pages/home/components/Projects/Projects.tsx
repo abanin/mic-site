@@ -13,38 +13,38 @@ import Section from "@/components/Section";
 import SwiperPagination, {
   stylesPagination,
 } from "@/components/SwiperPagination";
-import Tabs from "@/components/Tabs";
-import projectPng from "./projectCardDumb.png";
+import { useInfiniteProjectsQuery } from "api/project/useInfiniteProjectsQuery";
 
 import styles from "./styles.module.scss";
-
-const TABS = ["Завершённые", "В разработке", "Заявки на проекты"];
 
 const PROJECTS = [
   {
     title: "Название проекта",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod nunc risus nisl viverra in cursus posuere. Fringilla suscipit vel integer ipsum, quis. Est blandit.",
-    imgSrc: projectPng,
+    imgSrc: "",
   },
   {
     title: "Название проекта1",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod nunc risus nisl viverra in cursus posuere. Fringilla suscipit vel integer ipsum, quis. Est blandit.",
-    imgSrc: projectPng,
+    imgSrc: "",
   },
   {
     title: "Название проекта2",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod nunc risus nisl viverra in cursus posuere. Fringilla suscipit vel integer ipsum, quis. Est blandit.",
-    imgSrc: projectPng,
+    imgSrc: "",
   },
   {
     title: "Название проекта3",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod nunc risus nisl viverra in cursus posuere. Fringilla suscipit vel integer ipsum, quis. Est blandit.",
-    imgSrc: projectPng,
+    imgSrc: "",
   },
 ];
 
 const Projects = () => {
   const [el, setEl] = useState<null | HTMLDivElement>(null);
+
+  const infProjectsQuery = useInfiniteProjectsQuery();
+
   return (
     <Section
       title="Проекты"
@@ -52,15 +52,8 @@ const Projects = () => {
       desc="Идеи, которые воплощаются в жизнь"
       className={styles.projects}
     >
-      <Tabs
-        className={styles.tabs}
-        tabs={TABS}
-        defaultActiveTab={TABS[0]}
-        keyAccessor={(tab) => tab}
-        valueFormatter={(tab) => tab}
-      />
       <div style={{ position: "relative" }}>
-        {el && (
+        {el && infProjectsQuery.isSuccess && (
           <Swiper
             modules={[Navigation, Pagination]}
             pagination={{
@@ -86,21 +79,25 @@ const Projects = () => {
               },
             }}
           >
-            {PROJECTS.map(({ title, desc, imgSrc }) => {
-              return (
-                <SwiperSlide className={styles.swiperSlide} key={title}>
-                  <Link href={"/#"} passHref>
-                    <a>
-                      <CommonCard
-                        title={title}
-                        desc={desc}
-                        mediaSrc={imgSrc.src}
-                      />
-                    </a>
-                  </Link>
-                </SwiperSlide>
-              );
-            })}
+            {infProjectsQuery.data.pages.flatMap((page) =>
+              page.data.map((item) => {
+                console.log(item);
+                const { name, description, image, Slug } = item.attributes;
+                return (
+                  <SwiperSlide className={styles.swiperSlide} key={name}>
+                    <Link href={`/projects/${Slug}`} passHref>
+                      <a>
+                        <CommonCard
+                          title={name}
+                          desc={description}
+                          mediaSrc={image.data.attributes.url}
+                        />
+                      </a>
+                    </Link>
+                  </SwiperSlide>
+                );
+              })
+            )}
           </Swiper>
         )}
         <SwiperPagination

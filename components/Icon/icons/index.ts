@@ -1,6 +1,8 @@
 import ArrowLeft from "./arrow-left.svg";
 import ArrowRight from "./arrow-right.svg";
 import Books from "./books.svg";
+import Caret from "./caret.svg";
+import Check from "./check.svg";
 import Fill from "./fill.svg";
 import Home from "./home.svg";
 import Instagram from "./instagram.svg";
@@ -24,6 +26,8 @@ const icons = {
   user: User,
   "arrow-right": ArrowRight,
   "arrow-left": ArrowLeft,
+  caret: Caret,
+  check: Check,
 } as const;
 
 type IconType = keyof typeof icons;

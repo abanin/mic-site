@@ -25,14 +25,7 @@ const MainLayout = ({ title, btn, cardDesc, style, className }: Props) => {
           className={styles.card}
           style={{ backgroundImage: `url(/home/eventsPattern.svg)` }}
         >
-          <p className={styles.desc}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna
-            porttitor sit nisi purus viverra in iaculis elementum. Euismod
-            venenatis, at nisi tellus ipsum, libero, leo habitasse amet.
-            Rhoncus, nulla ipsum a integer amet. Metus, nibh tellus ac at. Ac ac
-            id consectetur elementum vel mauris. Nulla vulputate fermentum
-            bibendum urna, at quis egestas sagittis dui.{" "}
-          </p>
+          <p className={styles.desc}>{cardDesc}</p>
           {btn && <div className={styles.btn}>{btn}</div>}
           <div className={styles.image}>
             <Image

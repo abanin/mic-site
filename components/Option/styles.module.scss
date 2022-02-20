@@ -1,0 +1,68 @@
+.disabled {
+  pointer-events: none;
+}
+
+.option {
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 14px 15px 14px 41px;
+  transition: background-color 0.1s linear;
+  &:hover {
+    background-color: #6f74fc;
+    .value {
+      color: #ffffff;
+    }
+  }
+
+  &:focus {
+    background-color: #6f74fc;
+    outline: none;
+    .value {
+      color: #ffffff;
+    }
+  }
+}
+
+.selected {
+  cursor: pointer;
+  &:hover {
+    .checkSvg {
+      stroke: #ffffff;
+    }
+  }
+  &:focus {
+    .checkSvg {
+      stroke: #ffffff;
+    }
+  }
+}
+
+.value {
+  font-size: 16px;
+  line-height: 19px;
+  color: #2b2b2b;
+}
+
+.control {
+  pointer-events: none;
+  display: inline-flex;
+  margin-left: auto;
+}
+
+.checkSvg {
+  fill: transparent;
+  stroke: #2b2b2b;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.check {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+}
