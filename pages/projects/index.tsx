@@ -24,9 +24,9 @@ import {
   useInfiniteProjectsQuery,
 } from "api/project/useInfiniteProjectsQuery";
 import { getFooter } from "api/useFooterQuery";
-import useProjectCategoriesQuery, {
+import useProjectCategoriesQueryQuery, {
   getProjectCategories,
-} from "api/useProjectCategories";
+} from "api/useProjectCategoriesQuery";
 
 import styles from "./index.module.scss";
 
@@ -72,7 +72,7 @@ const Projects: NextPage = () => {
     searchValue,
   ]);
 
-  const projectCategoriesQuery = useProjectCategoriesQuery({
+  const projectCategoriesQuery = useProjectCategoriesQueryQuery({
     select: ({ data }) => data.map(({ attributes }) => attributes),
   });
 

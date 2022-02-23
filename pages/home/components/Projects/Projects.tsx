@@ -3,6 +3,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import React, { useState } from "react";
+import createImageUrl from "helpers/createImageUrl";
 import Link from "next/link";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -81,7 +82,6 @@ const Projects = () => {
           >
             {infProjectsQuery.data.pages.flatMap((page) =>
               page.data.map((item) => {
-                console.log(item);
                 const { name, description, image, Slug } = item.attributes;
                 return (
                   <SwiperSlide className={styles.swiperSlide} key={name}>
@@ -90,7 +90,7 @@ const Projects = () => {
                         <CommonCard
                           title={name}
                           desc={description}
-                          mediaSrc={image.data.attributes.url}
+                          mediaSrc={createImageUrl(image.data.attributes.url)}
                         />
                       </a>
                     </Link>

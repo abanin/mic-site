@@ -175,6 +175,7 @@
 }
 
 .story {
+  height: 320px;
   position: relative;
   flex-direction: column;
   padding: 30px 30px 50px 165px;
@@ -204,6 +205,7 @@
 }
 
 .avatarImage {
+  user-select: none;
   position: relative;
   width: 120px;
   height: 120px;
@@ -244,6 +246,7 @@
 }
 
 .desc {
+  width: 60%;
   margin: 20px 0 0 0;
   font-size: 16px;
   line-height: 140%;

@@ -5,6 +5,8 @@ import "swiper/css/navigation";
 import React, { useRef, useState } from "react";
 import { useMedia } from "react-use";
 import cn from "classnames";
+import createImageUrl from "helpers/createImageUrl";
+import createUrl from "helpers/createUrl";
 import Image from "next/image";
 import Link from "next/link";
 import SwiperInstance, { Navigation, Pagination } from "swiper";
@@ -20,6 +22,7 @@ import StyledLink from "@/components/StyledLink";
 import SwiperPagination, {
   stylesPagination,
 } from "@/components/SwiperPagination";
+import useStoriesQuery from "api/useSuccessStoriesQuery";
 import AvatarPng from "./avatar.png";
 
 import styles from "./styles.module.scss";
@@ -48,6 +51,10 @@ const LINKS: { iconName: IconType; title: string; href: string }[] = [
 const Students = () => {
   const [el, setEl] = useState<HTMLDivElement | null>(null);
   const isMobile = useMedia("(max-width: 992px)", false);
+
+  const storiesQuery = useStoriesQuery({
+    select: ({ data }) => data.map((item) => item.attributes),
+  });
 
   const checkArrow = (swiper: SwiperInstance) => {
     if (isMobile) {
@@ -116,7 +123,7 @@ const Students = () => {
           </>
         )}
 
-        {el && (
+        {el && storiesQuery.isSuccess && (
           <Swiper
             onInit={checkArrow}
             onResize={checkArrow}
@@ -137,64 +144,33 @@ const Students = () => {
               nextEl: `.${styles.right}`,
             }}
           >
-            <SwiperSlide className={styles.swiperSlide}>
-              <Card className={styles.story}>
-                <div className={styles.info}>
-                  <div className={styles.avatar}>
-                    <div className={styles.avatarImage}>
-                      <Image layout="fill" src={AvatarPng.src} alt="avatar" />
+            {storiesQuery.data.map((item) => {
+              return (
+                <SwiperSlide key={item.name} className={styles.swiperSlide}>
+                  <Card className={styles.story}>
+                    <div className={styles.info}>
+                      <div className={styles.avatar}>
+                        <div className={styles.avatarImage}>
+                          <Image
+                            layout="fill"
+                            src={createImageUrl(
+                              item.avatar.data.attributes.url
+                            )}
+                            alt="avatar"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <span className={styles.name}>{item.name}</span>
+                        <span className={styles.job}>{item.position}</span>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <span className={styles.name}>Фамилия Имя Отчество</span>
-                    <span className={styles.job}>Специальность</span>
-                  </div>
-                </div>
-                <p className={styles.desc}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget
-                  nisl, in consectetur est suscipit venenatis facilisis.
-                  Imperdiet bibendum fringilla curabitur arcu, velit blandit ac
-                  sagittis enim. Lobortis congue pharetra, imperdiet tellus dui
-                  integer mauris pellentesque malesuada. Urna, ipsum id vitae
-                  condimentum. Id quis tincidunt luctus in neque, tellus urna,
-                  ultricies. Adipiscing id eu facilisis feugiat consectetur.
-                  Tristique quis velit odio pellentesque eget tristique
-                  tristique quis. Purus sem in sit fermentum id adipiscing
-                  posuere id. Non consectetur leo quis feugiat non, senectus eu.
-                  Convallis.
-                </p>
-                <Button className={styles.btn}>Подробнее</Button>
-              </Card>
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}>
-              <Card className={styles.story}>
-                <div className={styles.info}>
-                  <div className={styles.avatar}>
-                    <div className={styles.avatarImage}>
-                      <Image layout="fill" src={AvatarPng.src} alt="avatar" />
-                    </div>
-                  </div>
-                  <div>
-                    <span className={styles.name}>Фамилия Имя Отчество</span>
-                    <span className={styles.job}>Специальность</span>
-                  </div>
-                </div>
-                <p className={styles.desc}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget
-                  nisl, in consectetur est suscipit venenatis facilisis.
-                  Imperdiet bibendum fringilla curabitur arcu, velit blandit ac
-                  sagittis enim. Lobortis congue pharetra, imperdiet tellus dui
-                  integer mauris pellentesque malesuada. Urna, ipsum id vitae
-                  condimentum. Id quis tincidunt luctus in neque, tellus urna,
-                  ultricies. Adipiscing id eu facilisis feugiat consectetur.
-                  Tristique quis velit odio pellentesque eget tristique
-                  tristique quis. Purus sem in sit fermentum id adipiscing
-                  posuere id. Non consectetur leo quis feugiat non, senectus eu.
-                  Convallis.
-                </p>
-                <Button className={styles.btn}>Подробнее</Button>
-              </Card>
-            </SwiperSlide>
+                    <p className={styles.desc}>{item.content}</p>
+                    {/* <Button className={styles.btn}>Подробнее</Button> */}
+                  </Card>
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         )}
         <SwiperPagination

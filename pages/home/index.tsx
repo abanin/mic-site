@@ -5,11 +5,14 @@ import Head from "next/head";
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import equipmentKeys from "api/equipment/keys";
+import { getInfiniteEquipments } from "api/equipment/useInfiniteEqupmentsQuery";
 import keys from "api/keys";
 import projectKeys from "api/project/keys";
 import { getInfiniteProjects } from "api/project/useInfiniteProjectsQuery";
 import { getFooter } from "api/useFooterQuery";
 import { getHomePage } from "api/useHomePageQuery";
+import { getSuccessStories } from "api/useSuccessStoriesQuery";
 import Contacts from "./components/Contacts";
 import Equipment from "./components/Equipment";
 import Events from "./components/Events";
@@ -51,6 +54,15 @@ export async function getStaticProps() {
     queryClient.prefetchQuery(keys.footer, getFooter),
     queryClient.prefetchQuery(projectKeys.infinity("", "WIP"), () =>
       getInfiniteProjects({ page: 1 }, (data) => {
+        return {
+          pages: [data],
+          pageParam: [data.meta.pagination.page],
+        };
+      })
+    ),
+    queryClient.prefetchQuery(keys.stories, getSuccessStories),
+    queryClient.prefetchQuery(equipmentKeys.infinity(""), () =>
+      getInfiniteEquipments({ page: 1 }, (data) => {
         return {
           pages: [data],
           pageParam: [data.meta.pagination.page],

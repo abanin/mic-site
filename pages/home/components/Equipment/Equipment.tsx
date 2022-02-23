@@ -3,6 +3,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import React, { useState } from "react";
+import createImageUrl from "helpers/createImageUrl";
 import Link from "next/link";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,6 +14,8 @@ import Section from "@/components/Section";
 import SwiperPagination, {
   stylesPagination,
 } from "@/components/SwiperPagination";
+import { useInfiniteEquipmentsQuery } from "api/equipment/useInfiniteEqupmentsQuery";
+import { useInfiniteProjectsQuery } from "api/project/useInfiniteProjectsQuery";
 import EquipmentPng from "./equipment.png";
 
 import styles from "./styles.module.scss";
@@ -38,6 +41,15 @@ const EQUIPMENT = [
 
 const Equipment = () => {
   const [el, setEl] = useState<HTMLDivElement | null>(null);
+
+  const infEquipmentQuery = useInfiniteEquipmentsQuery();
+
+  const equipments = infEquipmentQuery.isSuccess
+    ? infEquipmentQuery.data.pages.flatMap((page) => page.data)
+    : null;
+
+  console.log(equipments);
+
   return (
     <Section
       title="Оборудование"
@@ -70,21 +82,25 @@ const Equipment = () => {
             },
           }}
         >
-          {EQUIPMENT.map(({ title, imgSrc }) => {
-            return (
-              <SwiperSlide key={title}>
-                <Link href={"/#"} passHref>
-                  <a>
-                    <CommonCard
-                      mediaSrc={imgSrc.src}
-                      desc="Lorem ipsum dolor sit."
-                      title={title}
-                    />
-                  </a>
-                </Link>
-              </SwiperSlide>
-            );
-          })}
+          {equipments &&
+            equipments.map(({ id, attributes }) => {
+              return (
+                <SwiperSlide key={id}>
+                  <Link href={`/equipments/${id}`} passHref>
+                    <a>
+                      <CommonCard
+                        className={styles.card}
+                        mediaSrc={createImageUrl(
+                          attributes.avatar.data.attributes.url
+                        )}
+                        desc={attributes.content}
+                        title={attributes.name}
+                      />
+                    </a>
+                  </Link>
+                </SwiperSlide>
+              );
+            })}
         </Swiper>
         <SwiperPagination
           ref={(element) => {
