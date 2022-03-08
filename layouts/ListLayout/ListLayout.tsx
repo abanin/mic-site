@@ -6,6 +6,7 @@ import Container from "@/components/Container";
 import styles from "./styles.module.scss";
 
 type Props<T> = {
+  loading?: boolean;
   items: T[] | undefined | null;
   hasNext?: boolean;
   fetchNext: () => void;
@@ -14,6 +15,7 @@ type Props<T> = {
 };
 
 const ListLayout = <T,>({
+  loading = false,
   renderItem,
   keyAccessor,
   fetchNext,

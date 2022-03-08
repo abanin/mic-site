@@ -8,6 +8,8 @@ import Header from "@/components/Header";
 import equipmentKeys from "api/equipment/keys";
 import { getInfiniteEquipments } from "api/equipment/useInfiniteEqupmentsQuery";
 import keys from "api/keys";
+import labsKeys from "api/labs/keys";
+import { getInfiniteLabs } from "api/labs/useInfiniteLabsQuery";
 import projectKeys from "api/project/keys";
 import { getInfiniteProjects } from "api/project/useInfiniteProjectsQuery";
 import { getFooter } from "api/useFooterQuery";
@@ -63,6 +65,14 @@ export async function getStaticProps() {
     queryClient.prefetchQuery(keys.stories, getSuccessStories),
     queryClient.prefetchQuery(equipmentKeys.infinity(""), () =>
       getInfiniteEquipments({ page: 1 }, (data) => {
+        return {
+          pages: [data],
+          pageParam: [data.meta.pagination.page],
+        };
+      })
+    ),
+    queryClient.prefetchQuery(labsKeys.infinity(""), () =>
+      getInfiniteLabs({ page: 1 }, (data) => {
         return {
           pages: [data],
           pageParam: [data.meta.pagination.page],

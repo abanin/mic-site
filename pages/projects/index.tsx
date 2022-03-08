@@ -76,8 +76,6 @@ const Projects: NextPage = () => {
     select: ({ data }) => data.map(({ attributes }) => attributes),
   });
 
-  console.log(projectCategoriesQuery);
-
   const infProjectsQuery = useInfiniteProjectsQuery({
     searchValue: debouncedSearchValue,
     status,

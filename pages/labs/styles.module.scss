@@ -1,0 +1,47 @@
+.controls {
+  margin-top: 38px;
+  display: flex;
+  width: 50%;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.input {
+  margin-right: 15px;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 15px;
+  }
+}
+
+.footer {
+  margin-top: 90px;
+}
+
+.icon {
+  display: inline-flex;
+}
+
+.svg {
+  fill: #ffffff;
+}
+
+.iconWrapper {
+  cursor: pointer;
+  margin-right: 12px;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 100%;
+  justify-content: center;
+  background-color: #222222;
+  transition: background-color 0.1s linear;
+  &:hover {
+    background-color: #6f74fc;
+  }
+}

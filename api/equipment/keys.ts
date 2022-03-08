@@ -1,10 +1,12 @@
 const equipmentKeys = {
   all: ["equipments"] as const,
   equipment: (id: string | number) => [...equipmentKeys.all, id.toString()],
-  infinity: (searchValue: string) => [
+  equipmentCategories: () => [...equipmentKeys.all, "categories"],
+  infinity: (searchValue: string = "", stringifiedCategories: string = "") => [
     ...equipmentKeys.all,
     "infinity",
     searchValue,
+    stringifiedCategories,
   ],
 };
 

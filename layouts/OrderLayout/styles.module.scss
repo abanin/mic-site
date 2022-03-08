@@ -1,0 +1,70 @@
+.container {
+  padding-top: 60px;
+}
+
+.h1 {
+  width: 50%;
+  line-height: 120%;
+}
+
+.desc {
+  width: 50%;
+  margin: 5px 0 40px 0;
+  padding: 0;
+  display: block;
+  font-size: 20px;
+  line-height: 140%;
+  color: #555555;
+}
+
+.h3 {
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 120%;
+  color: #2b2b2b;
+  display: block;
+  margin-top: 30px;
+}
+
+.form {
+  width: 40%;
+  display: block;
+}
+
+.input {
+  margin-top: 15px;
+}
+
+.btn {
+  margin-top: 40px;
+}
+
+.disclaimer {
+  display: block;
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 140%;
+  color: #2b2b2b;
+  opacity: 0.6;
+}
+
+.phone {
+  margin-top: 15px;
+  :global {
+    .flag-dropdown {
+      display: none;
+    }
+    .form-control {
+      height: 50px;
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #555555;
+      border-radius: 30px;
+      padding: 14px 20px;
+      color: #2b2b2b;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+}

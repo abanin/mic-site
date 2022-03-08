@@ -3,47 +3,43 @@ import createUrl from "helpers/createUrl";
 import { StrapiResponseArrayWithPaging } from "types";
 
 import keys from "./keys";
-import { Equipment } from "./types";
+import { Lab } from "./types";
 
-export type EquipmentResponse = StrapiResponseArrayWithPaging<Equipment>;
+export type LabsResponse = StrapiResponseArrayWithPaging<
+  Pick<Lab, "name" | "description" | "previewImage">
+>;
 
 type Params = {
   page: number;
   pageSize?: number;
   requestParams?: {
     searchValue?: string;
-    categoryTypes?: string[];
   };
 };
 
-export const getInfiniteEquipments = async <T = EquipmentResponse>(
+export const getInfiniteLabs = async <T = LabsResponse>(
   params: Params,
-  selector?: (data: EquipmentResponse) => T
+  selector?: (data: LabsResponse) => T
 ) => {
   const { page, pageSize = 4, requestParams = {} } = params;
 
   const response = await fetch(
-    createUrl("/equipments", {
+    createUrl("/labs", {
       filters: {
         name: {
           $containsi: requestParams.searchValue,
-        },
-        equipment_category: {
-          type: {
-            $in: requestParams.categoryTypes,
-          },
         },
       },
       pagination: {
         page: page,
         pageSize: pageSize,
       },
-      fields: ["name", "content", "params"],
+      fields: ["name", "description"],
       populate: {
-        equipment_category: {
-          fields: ["name"],
+        previewImage: {
+          fields: ["url", "name"],
         },
-        avatar: {
+        image: {
           fields: ["url", "name"],
         },
       },
@@ -52,23 +48,22 @@ export const getInfiniteEquipments = async <T = EquipmentResponse>(
       method: "get",
     }
   );
-  const parsedJson: EquipmentResponse = await response.json();
+  const parsedJson: LabsResponse = await response.json();
 
   return selector ? selector(parsedJson) : parsedJson;
 };
 
-export const useInfiniteEquipmentsQuery = (
-  requestParams?: Params["requestParams"]
+export const useInfiniteLabsQuery = (
+  requestParams?: Params["requestParams"],
+  pageSize?: number
 ) => {
-  const stringifiedCategories =
-    requestParams?.categoryTypes?.sort().join(",") ?? "";
-
-  return useInfiniteQuery<EquipmentResponse, Error, EquipmentResponse>(
-    keys.infinity(requestParams?.searchValue ?? "", stringifiedCategories),
+  return useInfiniteQuery<LabsResponse, Error, LabsResponse>(
+    keys.infinity(requestParams?.searchValue ?? ""),
     {
       queryFn: ({ pageParam = 1 }) => {
-        return getInfiniteEquipments({
+        return getInfiniteLabs({
           page: pageParam as number,
+          pageSize,
           requestParams,
         });
       },

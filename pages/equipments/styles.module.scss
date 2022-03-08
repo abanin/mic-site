@@ -1,0 +1,59 @@
+.main {
+  padding-top: 60px;
+}
+
+.controls {
+  margin-top: 38px;
+  display: flex;
+  width: 50%;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.footer {
+  margin-top: 90px;
+}
+
+.input {
+  margin-right: 15px;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 15px;
+  }
+}
+
+.params {
+  padding: 0;
+  margin: 0;
+}
+
+.paramsTitle {
+  font-weight: normal;
+  margin: 40px 0 15px 0;
+  list-style: none;
+  display: block;
+  font-size: 20px;
+  line-height: 120%;
+  color: #555555;
+}
+
+.item {
+  display: flex;
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 120%;
+  color: #2b2b2b;
+  align-items: center;
+  &:first-child {
+    margin-top: 0;
+  }
+  &::before {
+    content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    color: #7d7d7d; /* Change the color */
+    margin-right: 10px;
+  }
+}

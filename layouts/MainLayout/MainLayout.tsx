@@ -1,4 +1,5 @@
 import React, { CSSProperties, ReactNode } from "react";
+import { useMedia } from "react-use";
 import Image from "next/image";
 
 import Card from "@/components/Card";
@@ -14,9 +15,18 @@ type Props = {
   title: string;
   cardDesc?: string;
   btn?: ReactNode;
+  image?: string;
 };
 
-const MainLayout = ({ title, btn, cardDesc, style, className }: Props) => {
+const MainLayout = ({
+  title,
+  btn,
+  cardDesc,
+  style,
+  className,
+  image,
+}: Props) => {
+  const isMobile = useMedia("(max-width: 768px)", false);
   return (
     <Container className={className} style={style}>
       <H1>{title}</H1>
@@ -27,14 +37,17 @@ const MainLayout = ({ title, btn, cardDesc, style, className }: Props) => {
         >
           <p className={styles.desc}>{cardDesc}</p>
           {btn && <div className={styles.btn}>{btn}</div>}
-          <div className={styles.image}>
-            <Image
-              width={210}
-              height={119}
-              src={QuadrocopterPng.src}
-              alt="quadro"
-            />
-          </div>
+          {!isMobile && (
+            <div className={styles.imageWrapper}>
+              <div className={styles.image}>
+                <Image
+                  layout="fill"
+                  src={image ? image : QuadrocopterPng.src}
+                  alt="quadro"
+                />
+              </div>
+            </div>
+          )}
         </Card>
       )}
     </Container>

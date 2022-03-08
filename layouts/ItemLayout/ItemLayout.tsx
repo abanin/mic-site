@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
+import { useMedia } from "react-use";
 import cn from "classnames";
 import Image from "next/image";
 
@@ -28,6 +29,7 @@ const ItemLayout: FC<Props> = ({
   renderActions,
   children,
 }) => {
+  const isMobile = useMedia("(max-width: 768px)", false);
   return (
     <>
       <Container className={cn(styles.itemPage, className)}>
@@ -35,7 +37,7 @@ const ItemLayout: FC<Props> = ({
           <div className={styles.image}>
             <Image layout="fill" src={mainImageSrc} alt={title} />
           </div>
-          {renderActions && (
+          {!isMobile && renderActions && (
             <div className={styles.actions}>{renderActions()}</div>
           )}
         </div>
@@ -49,9 +51,12 @@ const ItemLayout: FC<Props> = ({
           <div className={styles.content}>
             <ReactMarkdown>{content}</ReactMarkdown>
           </div>
+          {children}
+          {isMobile && renderActions && (
+            <div className={styles.actions}>{renderActions()}</div>
+          )}
         </div>
       </Container>
-      {children}
     </>
   );
 };

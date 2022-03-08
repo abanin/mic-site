@@ -3,6 +3,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import React, { useState } from "react";
+import createImageUrl from "helpers/createImageUrl";
+import createUrl from "helpers/createUrl";
 import Link from "next/link";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,31 +15,23 @@ import Section from "@/components/Section";
 import SwiperPagination, {
   stylesPagination,
 } from "@/components/SwiperPagination";
-import LabPng from "./lab_card.png";
+import { useInfiniteLabsQuery } from "api/labs/useInfiniteLabsQuery";
 
 import styles from "./styles.module.scss";
 
-const LABS = [
-  {
-    title: "Название лаборатории",
-    href: LabPng,
-  },
-  {
-    title: "Название лаборатории1",
-    href: LabPng,
-  },
-  {
-    title: "Название лаборатории2",
-    href: LabPng,
-  },
-  {
-    title: "Название лаборатории3",
-    href: LabPng,
-  },
-];
-
 const Labs = () => {
   const [el, setEl] = useState<HTMLDivElement | null>(null);
+
+  const infLabsQuery = useInfiniteLabsQuery({
+    searchValue: "",
+  });
+
+  const labs = infLabsQuery.isSuccess
+    ? infLabsQuery.data.pages.flatMap((page) => page.data)
+    : null;
+
+  console.log(infLabsQuery, labs);
+
   return (
     <Section
       title="Лаборатории"
@@ -67,21 +61,24 @@ const Labs = () => {
           },
         }}
       >
-        {LABS.map(({ title, href }) => {
-          return (
-            <SwiperSlide className={styles.swiperSlide} key={title}>
-              <Link href={href.src} passHref>
-                <a>
-                  <WideCard
-                    imageSrc={LabPng.src}
-                    desc="Lorem ipsum dolor sit amet."
-                    title={title}
-                  />
-                </a>
-              </Link>
-            </SwiperSlide>
-          );
-        })}
+        {infLabsQuery.isSuccess &&
+          labs?.map((lab) => {
+            return (
+              <SwiperSlide className={styles.swiperSlide} key={lab.id}>
+                <Link href={`/labs/${lab.id}`} passHref>
+                  <a>
+                    <WideCard
+                      imageSrc={createImageUrl(
+                        lab.attributes.previewImage.data.attributes.url
+                      )}
+                      desc={lab.attributes.description}
+                      title={lab.attributes.name}
+                    />
+                  </a>
+                </Link>
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
       <SwiperPagination ref={(el) => setEl(el)} />
       <Button className={styles.btn}>Смотреть все лаборатории</Button>

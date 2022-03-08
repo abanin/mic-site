@@ -4,6 +4,7 @@ import "swiper/css/navigation";
 
 import React, { useState } from "react";
 import createImageUrl from "helpers/createImageUrl";
+import stringCutter from "helpers/stringCutter";
 import Link from "next/link";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -53,6 +54,7 @@ const Equipment = () => {
   return (
     <Section
       title="Оборудование"
+      titleHref="/equipments"
       desc="Мы предоставим все необходимые инструменты для реализации твоих идей"
       className={styles.equipment}
     >
@@ -93,7 +95,7 @@ const Equipment = () => {
                         mediaSrc={createImageUrl(
                           attributes.avatar.data.attributes.url
                         )}
-                        desc={attributes.content}
+                        desc={stringCutter(attributes.content, 200)}
                         title={attributes.name}
                       />
                     </a>
