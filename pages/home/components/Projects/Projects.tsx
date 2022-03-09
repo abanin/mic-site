@@ -66,8 +66,6 @@ const Projects = () => {
               clickable: true,
             }}
             className={styles.swiper}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
             spaceBetween={30}
             slidesPerView={1}
             breakpoints={{

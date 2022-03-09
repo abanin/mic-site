@@ -6,7 +6,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import Button from "@/components/Button";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Icon from "@/components/Icon";
@@ -19,15 +18,11 @@ import styles from "./styles.module.scss";
 const Lab = () => {
   const router = useRouter();
   const id = typeof router.query.id === "string" ? router.query.id : "";
-  console.log(id);
   const labQuery = useLabQuery(id, {
     select: ({ data }) => {
-      console.log(data);
       return { id: data.id, ...data.attributes };
     },
   });
-
-  console.log(labQuery.data);
 
   return (
     <>

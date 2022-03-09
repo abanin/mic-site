@@ -56,16 +56,6 @@ const Students = () => {
     select: ({ data }) => data.map((item) => item.attributes),
   });
 
-  const checkArrow = (swiper: SwiperInstance) => {
-    if (isMobile) {
-      swiper.navigation.prevEl.style.display = "none";
-      swiper.navigation.nextEl.style.display = "none";
-    } else {
-      swiper.navigation.prevEl.style.display = "inline-flex";
-      swiper.navigation.nextEl.style.display = "inline-flex";
-    }
-  };
-
   return (
     <Section
       id="student"
@@ -116,17 +106,8 @@ const Students = () => {
       <H3 className={styles.h3}>Истории наших выпускников</H3>
 
       <div style={{ position: "relative" }}>
-        {!isMobile && (
-          <>
-            <Arrow left className={styles.left} />
-            <Arrow right className={styles.right} />
-          </>
-        )}
-
         {el && storiesQuery.isSuccess && (
           <Swiper
-            onInit={checkArrow}
-            onResize={checkArrow}
             modules={[Navigation, Pagination]}
             pagination={{
               el,

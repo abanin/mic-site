@@ -5,3 +5,19 @@
   column-gap: 30px;
   row-gap: 30px;
 }
+
+.main {
+  padding-top: 60px;
+}
+
+.disclosure {
+  display: block;
+  margin-top: 45px;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.footer {
+  margin-top: 90px;
+}

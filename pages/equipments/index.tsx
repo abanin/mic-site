@@ -39,6 +39,7 @@ const renderItem = ({
   <Link href={`/equipments/${id}`} passHref>
     <a>
       <CommonCard
+        className={styles.card}
         title={attributes.name}
         desc={stringCutter(attributes.content)}
         mediaSrc={createImageUrl(attributes.avatar.data.attributes.url)}

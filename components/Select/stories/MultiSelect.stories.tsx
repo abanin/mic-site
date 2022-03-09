@@ -24,11 +24,12 @@ const Template: Story<MultiSelectProps<string>> = (args) => {
 export const Default = Template.bind({});
 Default.args = {
   keyAccessor: (option) => option,
-  valueFormatter: (options) => (options.length ? `Selected ${options.length}` : `Nothing`),
+  valueFormatter: (options) =>
+    options.length ? `Selected ${options.length}` : `Nothing`,
   optionFormatter: (option) => option,
   options,
   onChange: () => {
-    console.log("onChange");
+    //
   },
 };
 
@@ -41,10 +42,10 @@ Playground.args = {
   options,
 
   onReset: () => {
-    console.log("reset");
+    // console.log("reset");
   },
   onClose: () => {
-    console.log("onClose");
+    // console.log("onClose");
   },
 
   portal: false,

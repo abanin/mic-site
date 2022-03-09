@@ -19,7 +19,7 @@ Default.args = {
   keyAccessor: (option) => option,
   valueFormatter: (option) => option,
   onChange: (option) => {
-    console.log(option);
+    // console.log(option);
   },
 };
 
@@ -33,7 +33,7 @@ Playground.args = {
   optionFormatter: (option: string) => option,
 
   onClose: () => {
-    console.log("close");
+    // console.log("close");
   },
   portal: false,
   shouldCloseOnOutsideClick: false,

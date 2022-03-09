@@ -9,6 +9,7 @@ import Instagram from "./instagram.svg";
 import Mail from "./mail.svg";
 import MapPoint from "./map-point.svg";
 import Phone from "./phone.svg";
+import Plus from "./plus.svg";
 import Telegram from "./telegram.svg";
 import User from "./user.svg";
 import VK from "./vk.svg";
@@ -28,6 +29,7 @@ const icons = {
   "arrow-left": ArrowLeft,
   caret: Caret,
   check: Check,
+  plus: Plus,
 } as const;
 
 type IconType = keyof typeof icons;

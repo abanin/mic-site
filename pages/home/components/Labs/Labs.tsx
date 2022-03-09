@@ -30,8 +30,6 @@ const Labs = () => {
     ? infLabsQuery.data.pages.flatMap((page) => page.data)
     : null;
 
-  console.log(infLabsQuery, labs);
-
   return (
     <Section
       title="Лаборатории"

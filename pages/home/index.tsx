@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import equipmentKeys from "api/equipment/keys";
 import { getInfiniteEquipments } from "api/equipment/useInfiniteEqupmentsQuery";
+import eventKeys from "api/events/keys";
+import { getEvents } from "api/events/useEventsQuery";
 import keys from "api/keys";
 import labsKeys from "api/labs/keys";
 import { getInfiniteLabs } from "api/labs/useInfiniteLabsQuery";
@@ -79,6 +81,7 @@ export async function getStaticProps() {
         };
       })
     ),
+    queryClient.prefetchQuery(eventKeys.all, getEvents),
   ]);
 
   return {

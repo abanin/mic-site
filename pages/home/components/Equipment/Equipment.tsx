@@ -49,8 +49,6 @@ const Equipment = () => {
     ? infEquipmentQuery.data.pages.flatMap((page) => page.data)
     : null;
 
-  console.log(equipments);
-
   return (
     <Section
       title="Оборудование"
@@ -70,8 +68,6 @@ const Equipment = () => {
             currentClass: "",
           }}
           className={styles.swiper}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
           spaceBetween={30}
           slidesPerView={1}
           breakpoints={{

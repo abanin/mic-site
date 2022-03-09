@@ -129,7 +129,7 @@ const Projects: NextPage = () => {
               }
               keyAccessor={(option) => option.type}
               onChange={() => {
-                console.log("");
+                //
               }}
             />
           )}

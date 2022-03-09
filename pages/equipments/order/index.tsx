@@ -16,7 +16,7 @@ const Order = () => {
   const id = router.query.id;
 
   const onSubmit = (params: {}) => {
-    console.log(params);
+    //
   };
 
   return (

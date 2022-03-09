@@ -7,7 +7,7 @@ import ListLayout from "layouts/ListLayout";
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import WideCard from "views/WideCard";
+import WideCard, { WideCardSkeleton } from "views/WideCard";
 
 import Container from "@/components/Container";
 import Footer from "@/components/Footer";
@@ -24,6 +24,10 @@ import {
 import { getFooter } from "api/useFooterQuery";
 
 import styles from "./styles.module.scss";
+
+const renderSkeletonItem = () => {
+  return <WideCardSkeleton />;
+};
 
 const renderItem = (item: {
   id: number;
@@ -96,6 +100,8 @@ const Labs: NextPage = () => {
       </Container>
       <ListLayout
         items={items}
+        loading={infLabsQuery.isLoading}
+        renderSkeletonItem={renderSkeletonItem}
         keyAccessor={(item) => item.id}
         hasNext={infLabsQuery.hasNextPage}
         fetchNext={infLabsQuery.fetchNextPage}

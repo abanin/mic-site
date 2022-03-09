@@ -11,12 +11,14 @@ type Props<T> = {
   hasNext?: boolean;
   fetchNext: () => void;
   renderItem: (item: T) => ReactNode;
+  renderSkeletonItem?: () => ReactNode;
   keyAccessor: (item: T) => string | number;
 };
 
 const ListLayout = <T,>({
   loading = false,
   renderItem,
+  renderSkeletonItem,
   keyAccessor,
   fetchNext,
   hasNext,
@@ -24,7 +26,15 @@ const ListLayout = <T,>({
 }: PropsWithChildren<Props<T>>) => {
   return (
     <Container>
-      {items && (
+      {loading && renderSkeletonItem && (
+        <ul className={styles.list}>
+          {Array.from({ length: 8 }).map((_, idx) => (
+            <li key={idx}>{renderSkeletonItem()}</li>
+          ))}
+        </ul>
+      )}
+
+      {items && !loading && (
         <ul className={styles.list}>
           {items.map((item) => (
             <li key={keyAccessor(item)}>{renderItem(item)}</li>
