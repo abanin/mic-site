@@ -5,6 +5,7 @@ export type Equipment = {
   category: any;
   content: string;
   params: string[];
+  description: string;
   avatar: StrapiResponseWithPaging<{
     url: string;
   }>;

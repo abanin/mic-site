@@ -105,7 +105,7 @@ const Projects = () => {
         />
       </div>
 
-      <Button className={styles.btn}>Создать свой проект</Button>
+      {/* <Button className={styles.btn}>Создать свой проект</Button> */}
     </Section>
   );
 };

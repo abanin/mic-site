@@ -35,6 +35,7 @@ const Labs = () => {
       title="Лаборатории"
       desc="Наши партнеры, открывающие больше возможностей"
       className={styles.labs}
+      titleHref="/labs"
     >
       <Swiper
         modules={[Navigation, Pagination]}
@@ -79,7 +80,11 @@ const Labs = () => {
           })}
       </Swiper>
       <SwiperPagination ref={(el) => setEl(el)} />
-      <Button className={styles.btn}>Смотреть все лаборатории</Button>
+      <Link href="/labs">
+        <a>
+          <Button className={styles.btn}>Смотреть все лаборатории</Button>
+        </a>
+      </Link>
     </Section>
   );
 };

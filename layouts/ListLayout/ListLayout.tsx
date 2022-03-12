@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, ReactNode } from "react";
+import React, { PropsWithChildren, ReactNode } from "react";
 
 import Button from "@/components/Button";
 import Container from "@/components/Container";
@@ -40,6 +40,10 @@ const ListLayout = <T,>({
             <li key={keyAccessor(item)}>{renderItem(item)}</li>
           ))}
         </ul>
+      )}
+
+      {!items?.length && !loading && (
+        <div className={styles.notFound}>Ничего не найдено</div>
       )}
 
       {hasNext && (

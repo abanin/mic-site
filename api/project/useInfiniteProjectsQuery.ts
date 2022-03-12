@@ -12,6 +12,7 @@ type Params = {
   pageSize?: number;
   requestParams?: {
     searchValue?: string;
+    categoryTypes?: string[];
     status?: "completed" | "WIP";
   };
 };
@@ -31,6 +32,11 @@ export const getInfiniteProjects = async <T = ProjectResponse>(
         status: {
           $eq: requestParams.status,
         },
+        categories: {
+          type: {
+            $in: requestParams.categoryTypes,
+          },
+        },
       },
       pagination: {
         page: page,
@@ -38,7 +44,9 @@ export const getInfiniteProjects = async <T = ProjectResponse>(
       },
       fields: ["status", "name", "description", "content", "slug", "Slug"],
       populate: {
-        categories: "*",
+        categories: {
+          fields: ["name", "type"],
+        },
         previewImage: {
           fields: ["url", "name"],
         },
@@ -62,7 +70,8 @@ export const useInfiniteProjectsQuery = (
   return useInfiniteQuery<ProjectResponse, Error, ProjectResponse>(
     keys.infinity(
       requestParams?.searchValue ?? "",
-      requestParams?.status ?? "completed"
+      requestParams?.status ?? "completed",
+      requestParams?.categoryTypes ?? []
     ),
     {
       queryFn: ({ pageParam = 1 }) => {
@@ -73,7 +82,8 @@ export const useInfiniteProjectsQuery = (
       },
       staleTime: 1000 * 60 * 60,
       getNextPageParam: (lastPage) =>
-        lastPage.meta.pagination.page === lastPage.meta.pagination.pageCount
+        lastPage.meta.pagination.page === lastPage.meta.pagination.pageCount ||
+        lastPage.meta.pagination.total === 0
           ? false
           : lastPage.meta.pagination.page + 1,
       getPreviousPageParam: (firstPage) =>

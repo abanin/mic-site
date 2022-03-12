@@ -1,15 +1,15 @@
 import React from "react";
 import { dehydrate, QueryClient } from "react-query";
 import { useDebounce } from "react-use";
+import createImageUrl from "helpers/createImageUrl";
 import useReducerAsState from "hooks/useReducerAsState";
 import ListLayout from "layouts/ListLayout";
 import MainLayout from "layouts/MainLayout";
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import CommonCard from "views/CommonCard";
+import CommonCard, { CommonCardSkeleton } from "views/CommonCard";
 
-import Button from "@/components/Button";
 import Container from "@/components/Container";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -33,6 +33,7 @@ import styles from "./index.module.scss";
 type State = {
   searchValue: string;
   debouncedSearchValue: string;
+  categoryTypes: string[];
   status: "completed" | "WIP";
 };
 
@@ -42,31 +43,23 @@ const renderItem = (item: Project) => (
       <CommonCard
         title={item.name}
         desc={item.description}
-        mediaSrc={item.previewImage.data.attributes.url}
+        mediaSrc={createImageUrl(item.previewImage.data.attributes.url)}
       />
     </a>
   </Link>
 );
 
-const TABS = [
-  {
-    title: "Завершённые",
-    value: "completed" as const,
-  },
-  {
-    title: "В разработке",
-    value: "WIP" as const,
-  },
-];
+const renderSkeletonItem = () => <CommonCardSkeleton />;
 
 const Projects: NextPage = () => {
   const [state, setState] = useReducerAsState<State>({
     searchValue: "",
+    categoryTypes: [],
     debouncedSearchValue: "",
     status: "completed",
   });
 
-  const { searchValue, debouncedSearchValue, status } = state;
+  const { searchValue, debouncedSearchValue, status, categoryTypes } = state;
 
   useDebounce(() => setState({ debouncedSearchValue: searchValue }), 1000, [
     searchValue,
@@ -79,6 +72,7 @@ const Projects: NextPage = () => {
   const infProjectsQuery = useInfiniteProjectsQuery({
     searchValue: debouncedSearchValue,
     status,
+    categoryTypes,
   });
 
   const items = infProjectsQuery.data?.pages
@@ -99,20 +93,12 @@ const Projects: NextPage = () => {
       <Header />
       <MainLayout
         className={styles.main}
+        image="/home/quadro2.png"
         title="Проекты наших студентов"
         cardDesc="На базе Молодежного Инженерного Центра каждый студент МГТУ им. Н.Э. Баумана может реализовать свой проект : от идеи до первых продаж. Самое время переходить от мечтаний к делу, становясь частью инженерного сообщества"
-        btn={<Button>Создать свой проект</Button>}
+        // btn={<Button>Создать свой проект</Button>}
       />
       <Container style={{ marginTop: 40 }}>
-        <Tabs
-          tabs={TABS}
-          defaultActiveTab={TABS[0]}
-          keyAccessor={(tab) => tab.value}
-          valueFormatter={(tab) => tab.title}
-          onClick={(tab) => {
-            setState({ status: tab.value });
-          }}
-        />
         <div className={styles.controls}>
           <Input
             className={styles.input}
@@ -128,8 +114,10 @@ const Projects: NextPage = () => {
                 options.length ? `Выбрано: ${options.length}` : "Категории"
               }
               keyAccessor={(option) => option.type}
-              onChange={() => {
-                //
+              onChange={(options) => {
+                setState({
+                  categoryTypes: options.map((option) => option.type),
+                });
               }}
             />
           )}
@@ -137,10 +125,12 @@ const Projects: NextPage = () => {
       </Container>
       <ListLayout
         items={items}
+        loading={infProjectsQuery.isLoading}
         keyAccessor={(item) => item.Slug}
         hasNext={infProjectsQuery.hasNextPage}
         fetchNext={infProjectsQuery.fetchNextPage}
         renderItem={renderItem}
+        renderSkeletonItem={renderSkeletonItem}
       />
       <Footer className={styles.footer} />
     </>
@@ -153,7 +143,7 @@ export const getStaticProps = async () => {
   await Promise.all([
     queryClient.prefetchQuery(keys.footer, getFooter),
     queryClient.prefetchQuery(keys.projectCategories, getProjectCategories),
-    queryClient.prefetchQuery(projectKeys.infinity("", "completed"), () =>
+    queryClient.prefetchQuery(projectKeys.infinity("", "completed", []), () =>
       getInfiniteProjects({ page: 1 }, (data) => ({
         pages: [data],
         pageParam: [data.meta.pagination.page],

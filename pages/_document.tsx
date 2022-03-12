@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toastify";
 import { Head, Html, Main, NextScript } from "next/document";
 
 export default function Document() {

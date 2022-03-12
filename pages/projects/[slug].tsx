@@ -32,10 +32,8 @@ const Project = () => {
         desc={projectQuery.data.description}
         mainImageSrc={ImagePng.src}
         content={projectQuery.data.content}
-        renderActions={() => <Button>Создать свой проект</Button>}
-      >
-        <Equipment />
-      </ItemLayout>
+        // renderActions={() => <Button>Создать свой проект</Button>}
+      />
       <Footer />
     </>
   );

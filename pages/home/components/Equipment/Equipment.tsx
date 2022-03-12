@@ -91,7 +91,7 @@ const Equipment = () => {
                         mediaSrc={createImageUrl(
                           attributes.avatar.data.attributes.url
                         )}
-                        desc={stringCutter(attributes.content, 200)}
+                        desc={stringCutter(attributes.description, 200)}
                         title={attributes.name}
                       />
                     </a>
@@ -107,7 +107,11 @@ const Equipment = () => {
         />
       </div>
 
-      <Button className={styles.btn}>Смотреть всё оборудование</Button>
+      <Link href="/equipments" passHref>
+        <a>
+          <Button className={styles.btn}>Смотреть всё оборудование</Button>
+        </a>
+      </Link>
     </Section>
   );
 };

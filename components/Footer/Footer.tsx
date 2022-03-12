@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import classNames from "classnames";
 import Link from "next/link";
 
@@ -44,15 +44,16 @@ const PAGES = [
 
 type Props = {
   className?: string;
+  style?: CSSProperties;
 };
 
-const Footer = ({ className }: Props) => {
+const Footer = ({ className, style }: Props) => {
   const footerQuery = useFooterQuery({
     select: ({ data }) => data.attributes.footer,
   });
 
   return (
-    <footer className={classNames(styles.footer, className)}>
+    <footer style={style} className={classNames(styles.footer, className)}>
       <Container className={styles.container}>
         <Logo className={styles.logo} />
         <div className={styles.main}>

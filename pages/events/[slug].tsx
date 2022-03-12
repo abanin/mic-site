@@ -47,7 +47,15 @@ const Event = () => {
           mainImageSrc={createImageUrl(
             eventQuery.data.attributes.image.data.attributes.url
           )}
-          renderActions={() => <Button>Записаться</Button>}
+          renderActions={() => (
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={eventQuery.data.attributes.inviteLink}
+            >
+              <Button>Записаться</Button>
+            </a>
+          )}
         />
       )}
 

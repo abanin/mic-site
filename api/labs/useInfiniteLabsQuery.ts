@@ -69,7 +69,8 @@ export const useInfiniteLabsQuery = (
       },
       staleTime: 1000 * 60 * 60,
       getNextPageParam: (lastPage) =>
-        lastPage.meta.pagination.page === lastPage.meta.pagination.pageCount
+        lastPage.meta.pagination.page === lastPage.meta.pagination.pageCount ||
+        lastPage.meta.pagination.total === 0
           ? false
           : lastPage.meta.pagination.page + 1,
       getPreviousPageParam: (firstPage) =>

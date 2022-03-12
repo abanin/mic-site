@@ -20,7 +20,13 @@ const Main = () => {
           <>
             <H1 className={styles.h1}>{homePageQuery.data.pageTitle}</H1>
             <p className={styles.desc}>{homePageQuery.data.pageDescription}</p>
-            <Button className={styles.btn}>Стать частью центра</Button>
+            <a
+              target="_blank"
+              href="https://forms.gle/7zLbfXmxStQuCGs17"
+              rel="noreferrer"
+            >
+              <Button className={styles.btn}>Стать частью центра</Button>
+            </a>
             <div className={styles.image}>
               <Image
                 width={284}

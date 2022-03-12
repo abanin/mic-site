@@ -9,7 +9,7 @@ import styles from "./styles.module.scss";
 
 const Contacts = () => {
   return (
-    <Section title="Контакты" className={styles.contracts}>
+    <Section id="contacts" title="Контакты" className={styles.contracts}>
       <Card className={styles.card}>
         <div className={styles.info}>
           <h3 className={styles.h3}>У вас остались вопросы?</h3>

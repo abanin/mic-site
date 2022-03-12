@@ -8,7 +8,7 @@ import ListLayout from "layouts/ListLayout";
 import MainLayout from "layouts/MainLayout";
 import Head from "next/head";
 import Link from "next/link";
-import CommonCard from "views/CommonCard";
+import CommonCard, { CommonCardSkeleton } from "views/CommonCard";
 
 import Container from "@/components/Container";
 import Footer from "@/components/Footer";
@@ -41,12 +41,14 @@ const renderItem = ({
       <CommonCard
         className={styles.card}
         title={attributes.name}
-        desc={stringCutter(attributes.content)}
+        desc={stringCutter(attributes.description)}
         mediaSrc={createImageUrl(attributes.avatar.data.attributes.url)}
       />
     </a>
   </Link>
 );
+
+const renderSkeletonItem = () => <CommonCardSkeleton />;
 
 type State = {
   searchValue: string;
@@ -129,10 +131,12 @@ const Equipments = () => {
       </Container>
       <ListLayout
         items={items}
+        loading={infEquipmentsQuery.isLoading}
         keyAccessor={(item) => item.id}
         hasNext={infEquipmentsQuery.hasNextPage}
         fetchNext={infEquipmentsQuery.fetchNextPage}
         renderItem={renderItem}
+        renderSkeletonItem={renderSkeletonItem}
       />
       <Footer className={styles.footer} />
     </>

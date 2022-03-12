@@ -43,7 +43,7 @@ const PAGES = [
   },
   {
     title: "Контакты",
-    href: "/contacts",
+    href: "/home#contacts",
   },
 ];
 
@@ -79,11 +79,6 @@ const Header = ({ className, style }: Props) => {
               <Hamburger toggled={isOpen} toggle={setIsOpen} />
             </div>
           )}
-          <Link passHref href="#lk">
-            <StyledLink className={styles.user}>
-              <Icon classNameSvg={styles.svg} iconName="user" />
-            </StyledLink>
-          </Link>
         </div>
       </Container>
     </nav>

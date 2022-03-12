@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import { useMedia } from "react-use";
 import cn from "classnames";
+import createImageUrl from "helpers/createImageUrl";
 import Image from "next/image";
 
 import Container from "@/components/Container";
@@ -49,7 +50,9 @@ const ItemLayout: FC<Props> = ({
             desc
           )}
           <div className={styles.content}>
-            <ReactMarkdown>{content}</ReactMarkdown>
+            <ReactMarkdown transformImageUri={(src) => createImageUrl(src)}>
+              {content}
+            </ReactMarkdown>
           </div>
           {children}
           {isMobile && renderActions && (

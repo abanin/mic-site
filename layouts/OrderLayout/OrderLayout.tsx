@@ -15,6 +15,7 @@ import styles from "./styles.module.scss";
 type Props = {
   title: string;
   desc: string;
+  btnLoading?: boolean;
   onSubmit: (params: { fio: string; phone: string; email: string }) => void;
 };
 
@@ -23,7 +24,13 @@ type State = {
   phone: string;
   email: string;
 };
-const OrderLayout: FC<Props> = ({ title, desc, onSubmit, children }) => {
+const OrderLayout: FC<Props> = ({
+  title,
+  desc,
+  onSubmit,
+  children,
+  btnLoading = false,
+}) => {
   const [state, setState] = useReducerAsState<State>({
     fio: "",
     phone: "",
@@ -75,6 +82,7 @@ const OrderLayout: FC<Props> = ({ title, desc, onSubmit, children }) => {
           }}
         />
         <Button
+          loading={btnLoading}
           className={styles.btn}
           type="submit"
           disabled={!fio.length || phone.length < 11 || !email.length}

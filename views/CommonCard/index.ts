@@ -1,2 +1,2 @@
 export { default } from "./CommonCard";
-export { default as Skeleton } from "./Skeleton";
+export { default as CommonCardSkeleton } from "./Skeleton";

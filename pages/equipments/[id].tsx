@@ -4,6 +4,7 @@ import createImageUrl from "helpers/createImageUrl";
 import ItemLayout from "layouts/ItemLayout";
 import { GetStaticProps } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 
 import Button from "@/components/Button";
@@ -48,7 +49,13 @@ const Equipment = () => {
         )}
         desc={equipmentQuery.data.equipment_category.data.attributes.name}
         content={equipmentQuery.data.content}
-        renderActions={() => <Button>Запрос на оборудование</Button>}
+        renderActions={() => (
+          <Link href={`/equipments/order?id=${id}`} passHref>
+            <a>
+              <Button>Запрос на оборудование</Button>
+            </a>
+          </Link>
+        )}
       >
         <h5 className={styles.paramsTitle}>Характеристики оборудования</h5>
         <ul className={styles.params}>

@@ -56,7 +56,7 @@ export async function getStaticProps() {
   await Promise.all([
     queryClient.prefetchQuery(keys.homePage, getHomePage),
     queryClient.prefetchQuery(keys.footer, getFooter),
-    queryClient.prefetchQuery(projectKeys.infinity("", "WIP"), () =>
+    queryClient.prefetchQuery(projectKeys.infinity("", "WIP", []), () =>
       getInfiniteProjects({ page: 1 }, (data) => {
         return {
           pages: [data],

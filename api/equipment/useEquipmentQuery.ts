@@ -12,7 +12,7 @@ type EquipmentResponse = StrapiResponseWithPaging<
 export const getEquipment = async <T = EquipmentResponse>(id: string) => {
   const response = await fetch(
     createUrl(`/equipments/${id}`, {
-      fields: ["name", "content", "params"],
+      fields: ["name", "content", "params", "description"],
       populate: {
         avatar: {
           fields: ["url"],

@@ -8,4 +8,5 @@ export type Event = {
   slug: string;
   endDate: null | string;
   image: StrapiResponse<{ url: string; name: string }, null>;
+  inviteLink: string;
 };

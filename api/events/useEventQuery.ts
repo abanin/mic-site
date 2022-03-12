@@ -16,7 +16,15 @@ export const getEvent = async <T = EventResponse>(slug: string) => {
           $eq: slug,
         },
       },
-      fields: ["name", "date", "endDate", "content", "type", "slug"],
+      fields: [
+        "name",
+        "date",
+        "endDate",
+        "content",
+        "type",
+        "slug",
+        "inviteLink",
+      ],
       populate: {
         image: {
           fields: ["url", "name"],
