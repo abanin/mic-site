@@ -16,7 +16,6 @@ import SwiperPagination, {
   stylesPagination,
 } from "@/components/SwiperPagination";
 import { useInfiniteEquipmentsQuery } from "api/equipment/useInfiniteEqupmentsQuery";
-import { useInfiniteProjectsQuery } from "api/project/useInfiniteProjectsQuery";
 import EquipmentPng from "./equipment.png";
 
 import styles from "./styles.module.scss";
@@ -48,7 +47,6 @@ const Equipment = () => {
   const equipments = infEquipmentQuery.isSuccess
     ? infEquipmentQuery.data.pages.flatMap((page) => page.data)
     : null;
-
   return (
     <Section
       title="Оборудование"

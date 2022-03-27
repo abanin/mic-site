@@ -12,7 +12,6 @@ import projectKeys from "api/project/keys";
 import { getProject, useProjectQuery } from "api/project/useProjectQuery";
 import { getProjects } from "api/project/useProjectsQuery";
 import { getFooter } from "api/useFooterQuery";
-import Equipment from "./components/Equipment";
 import ImagePng from "./image.png";
 
 const Project = () => {

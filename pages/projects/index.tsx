@@ -15,7 +15,6 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Input from "@/components/Input";
 import { MultiSelect } from "@/components/Select";
-import Tabs from "@/components/Tabs";
 import keys from "api/keys";
 import projectKeys from "api/project/keys";
 import { Project } from "api/project/types";

@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    outputStandalone: true,
+  },
   images: {
-    domains: ["images.unsplash.com", "0.0.0.0"],
+    domains: ["images.unsplash.com", "0.0.0.0", "strapi"],
   },
   webpack(config) {
     config.module.rules.push({

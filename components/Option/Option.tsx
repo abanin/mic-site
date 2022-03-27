@@ -23,7 +23,7 @@ const Option: React.FC<Props & NativeProps> = ({
   const cls = cn(className, styles.option, selected && styles.selected);
 
   return (
-    <li className={cls} {...nativeLiProps} role="option">
+    <li className={cls} {...nativeLiProps}>
       {selected && (
         <Icon
           iconName="check"
