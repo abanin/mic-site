@@ -7,6 +7,7 @@ import { useMedia } from "react-use";
 import cn from "classnames";
 import createImageUrl from "helpers/createImageUrl";
 import createUrl from "helpers/createUrl";
+import imageLoader from "helpers/imageLoader";
 import Image from "next/image";
 import Link from "next/link";
 import SwiperInstance, { Navigation, Pagination } from "swiper";
@@ -64,7 +65,12 @@ const Students = () => {
     >
       <div className={styles.main}>
         <div className={styles.image}>
-          <Image layout="fill" src="/home/students.svg" alt="students" />
+          <Image
+            loader={imageLoader}
+            layout="fill"
+            src="/home/students.svg"
+            alt="students"
+          />
         </div>
 
         <ul className={styles.featureList}>
@@ -133,6 +139,7 @@ const Students = () => {
                       <div className={styles.avatar}>
                         <div className={styles.avatarImage}>
                           <Image
+                            loader={imageLoader}
                             layout="fill"
                             src={createImageUrl(
                               item.avatar.data.attributes.url

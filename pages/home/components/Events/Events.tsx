@@ -4,6 +4,7 @@ import "swiper/css/navigation";
 
 import React, { useState } from "react";
 import { useMedia } from "react-use";
+import imageLoader from "helpers/imageLoader";
 import Image from "next/image";
 import Link from "next/link";
 import { Navigation, Pagination } from "swiper";
@@ -126,7 +127,12 @@ const Events = () => {
                   <StyledLink className={styles.link}>Смотреть все</StyledLink>
                 </Link>
                 <div className={styles.image}>
-                  <Image layout="fill" src={type.image} alt={type.title} />
+                  <Image
+                    loader={imageLoader}
+                    layout="fill"
+                    src={type.image}
+                    alt={type.title}
+                  />
                 </div>
               </Card>
             ) : null;
@@ -193,6 +199,7 @@ const Events = () => {
                       </Link>
                       <div className={styles.image}>
                         <Image
+                          loader={imageLoader}
                           layout="fill"
                           src={type.image}
                           alt={type.title}

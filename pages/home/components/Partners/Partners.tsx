@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import imageLoader from "helpers/imageLoader";
 import Image from "next/image";
 
 import Button from "@/components/Button";
@@ -24,6 +25,7 @@ const Partners: FC<Props> = () => {
           </p>
           <div className={styles.img}>
             <Image
+              loader={imageLoader}
               width={250}
               height={240}
               src="/home/partners.svg"

@@ -1,4 +1,5 @@
 import React from "react";
+import imageLoader from "helpers/imageLoader";
 import Image from "next/image";
 
 import Button from "@/components/Button";
@@ -29,6 +30,7 @@ const Main = () => {
             </a>
             <div className={styles.image}>
               <Image
+                loader={imageLoader}
                 width={284}
                 height={371}
                 src="/home/mainImage.svg"

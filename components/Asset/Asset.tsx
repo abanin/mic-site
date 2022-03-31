@@ -3,6 +3,7 @@ import cn from "classnames";
 import Image from "next/image";
 
 import styles from "./styles.module.scss";
+import imageLoader from "helpers/imageLoader";
 
 type Props = {
   className?: string;
@@ -16,7 +17,13 @@ const Asset: FC<Props> = ({ children, className, src, label, ticker }) => {
   return (
     <div className={cn(styles.asset, className)}>
       <div className={styles.image}>
-        <Image width={44} height={44} src={src} alt="asset" />
+        <Image
+          loader={imageLoader}
+          width={44}
+          height={44}
+          src={src}
+          alt="asset"
+        />
       </div>
       {children ? (
         children

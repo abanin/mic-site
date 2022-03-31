@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import { useMedia } from "react-use";
 import cn from "classnames";
 import createImageUrl from "helpers/createImageUrl";
+import imageLoader from "helpers/imageLoader";
 import Image from "next/image";
 
 import Container from "@/components/Container";
@@ -36,7 +37,12 @@ const ItemLayout: FC<Props> = ({
       <Container className={cn(styles.itemPage, className)}>
         <div className={styles.info}>
           <div className={styles.image}>
-            <Image layout="fill" src={mainImageSrc} alt={title} />
+            <Image
+              loader={imageLoader}
+              layout="fill"
+              src={mainImageSrc}
+              alt={title}
+            />
           </div>
           {!isMobile && renderActions && (
             <div className={styles.actions}>{renderActions()}</div>

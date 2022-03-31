@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import imageLoader from "helpers/imageLoader";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -32,7 +33,12 @@ const ErrorLayout = ({
       </div>
 
       <div className={styles.imageWrapper}>
-        <Image layout="fill" src="/404.svg" alt="404 error" />
+        <Image
+          loader={imageLoader}
+          layout="fill"
+          src="/404.svg"
+          alt="404 error"
+        />
       </div>
     </Container>
   );

@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  staticPageGenerationTimeout: 120,
   experimental: {
     outputStandalone: true,
   },
   images: {
-    domains: ["images.unsplash.com", "0.0.0.0", "strapi"],
+    domains: ["images.unsplash.com", "0.0.0.0", "strapi", "*"],
   },
   webpack(config) {
     config.module.rules.push({

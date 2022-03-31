@@ -1,5 +1,6 @@
 import React, { CSSProperties, ReactNode } from "react";
 import { useMedia } from "react-use";
+import imageLoader from "helpers/imageLoader";
 import Image from "next/image";
 
 import Card from "@/components/Card";
@@ -41,6 +42,7 @@ const MainLayout = ({
             <div className={styles.imageWrapper}>
               <div className={styles.image}>
                 <Image
+                  loader={imageLoader}
                   layout="fill"
                   src={image ? image : QuadrocopterPng.src}
                   alt="quadro"

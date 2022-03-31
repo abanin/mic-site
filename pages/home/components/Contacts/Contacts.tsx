@@ -1,4 +1,5 @@
 import React from "react";
+import imageLoader from "helpers/imageLoader";
 import Image from "next/image";
 
 import Card from "@/components/Card";
@@ -52,6 +53,7 @@ const Contacts = () => {
 
         <div className={styles.image}>
           <Image
+            loader={imageLoader}
             width={418}
             height={248}
             src="/home/contacts.svg"
