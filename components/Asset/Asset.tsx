@@ -1,9 +1,9 @@
 import React, { CSSProperties, FC, ReactNode } from "react";
 import cn from "classnames";
+import imageLoader from "helpers/imageLoader";
 import Image from "next/image";
 
 import styles from "./styles.module.scss";
-import imageLoader from "helpers/imageLoader";
 
 type Props = {
   className?: string;
