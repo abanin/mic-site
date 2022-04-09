@@ -17,7 +17,6 @@ const SOCIAL_LINKS: {
   { key: "email", iconName: "mail", prefix: "mailto:" },
   { key: "telegram", iconName: "telegram" },
   { key: "vk", iconName: "vk" },
-  { key: "instagram", iconName: "instagram" },
 ];
 
 type Props = {
