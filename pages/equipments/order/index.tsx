@@ -42,7 +42,6 @@ const Order = () => {
       { id, ...params },
       {
         onSuccess: () => {
-          console.log("hello world");
           toast("Запрос успешно отправлен!", {
             type: "success",
           });

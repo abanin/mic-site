@@ -43,10 +43,15 @@
   list-style-type: none;
   display: flex;
   flex-grow: 1;
-  margin: 0 0 0 auto;
+  margin: 0 70px 0 auto;
   justify-content: space-between;
   padding: 0;
-  margin-right: 70px;
+  @media screen and (max-width: 768px) {
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 30px 0 0 0;
+  }
 }
 
 .item {
@@ -59,12 +64,9 @@
   &:first-child {
     margin-left: 0;
   }
-}
-
-.buttons {
-  display: inline-flex;
-  margin-left: auto;
-  align-items: center;
+  @media screen and (max-width: 768px) {
+    padding: 10px;
+  }
 }
 
 .hamburger {
@@ -88,4 +90,27 @@
 
 .svg {
   fill: #f2f4f8;
+}
+
+.mobileNav {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.buttons {
+  position: fixed;
+  top: 20px;
+  right: 0;
+  z-index: 101;
+  display: inline-flex;
+  margin-left: auto;
+  align-items: center;
 }
