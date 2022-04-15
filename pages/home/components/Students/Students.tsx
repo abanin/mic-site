@@ -38,15 +38,19 @@ const FEATURES = [
 const LINKS: { iconName: IconType; title: string; href: string }[] = [
   {
     title: "Хочу узнать какие в университете есть научные центры",
-    href: "#",
+    href: "/labs",
     iconName: "fill",
   },
   {
     title: "Узнать об образовательных программах",
-    href: "#",
+    href: "/events",
     iconName: "books",
   },
-  { title: "Хочу стать частью МИЦ", href: "#", iconName: "home" },
+  {
+    title: "Хочу стать частью МИЦ",
+    href: "https://forms.gle/7zLbfXmxStQuCGs17",
+    iconName: "home",
+  },
 ];
 
 const Students = () => {

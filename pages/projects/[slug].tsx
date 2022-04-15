@@ -1,5 +1,6 @@
 import React from "react";
 import { dehydrate, QueryClient } from "react-query";
+import createImageUrl from "helpers/createImageUrl";
 import ItemLayout from "layouts/ItemLayout";
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
@@ -29,9 +30,10 @@ const Project = () => {
       <ItemLayout
         title={projectQuery.data.name}
         desc={projectQuery.data.description}
-        mainImageSrc={ImagePng.src}
+        mainImageSrc={createImageUrl(
+          projectQuery.data.image.data.attributes.url
+        )}
         content={projectQuery.data.content}
-        // renderActions={() => <Button>Создать свой проект</Button>}
       />
       <Footer />
     </>

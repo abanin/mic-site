@@ -15,36 +15,18 @@ import SwiperPagination, {
   stylesPagination,
 } from "@/components/SwiperPagination";
 import { useInfiniteProjectsQuery } from "api/project/useInfiniteProjectsQuery";
+import useLinksQuery from "api/useLinksQuery";
 
 import styles from "./styles.module.scss";
-
-const PROJECTS = [
-  {
-    title: "Название проекта",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod nunc risus nisl viverra in cursus posuere. Fringilla suscipit vel integer ipsum, quis. Est blandit.",
-    imgSrc: "",
-  },
-  {
-    title: "Название проекта1",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod nunc risus nisl viverra in cursus posuere. Fringilla suscipit vel integer ipsum, quis. Est blandit.",
-    imgSrc: "",
-  },
-  {
-    title: "Название проекта2",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod nunc risus nisl viverra in cursus posuere. Fringilla suscipit vel integer ipsum, quis. Est blandit.",
-    imgSrc: "",
-  },
-  {
-    title: "Название проекта3",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod nunc risus nisl viverra in cursus posuere. Fringilla suscipit vel integer ipsum, quis. Est blandit.",
-    imgSrc: "",
-  },
-];
 
 const Projects = () => {
   const [el, setEl] = useState<null | HTMLDivElement>(null);
 
   const infProjectsQuery = useInfiniteProjectsQuery();
+
+  const linksQuery = useLinksQuery({
+    select: ({ data }) => data.attributes,
+  });
 
   return (
     <Section
@@ -105,7 +87,13 @@ const Projects = () => {
         />
       </div>
 
-      {/* <Button className={styles.btn}>Создать свой проект</Button> */}
+      {linksQuery.isSuccess && linksQuery.data.createProject && (
+        <Link href={linksQuery.data.createProject} passHref>
+          <a>
+            <Button className={styles.btn}>Создать свой проект</Button>
+          </a>
+        </Link>
+      )}
     </Section>
   );
 };

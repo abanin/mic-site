@@ -1,17 +1,23 @@
 import React, { FC } from "react";
 import imageLoader from "helpers/imageLoader";
 import Image from "next/image";
+import Link from "next/link";
 
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Container from "@/components/Container";
 import H2 from "@/components/H2";
+import useLinksQuery from "api/useLinksQuery";
 
 import styles from "./styles.module.scss";
 
 type Props = {};
 
 const Partners: FC<Props> = () => {
+  const linksQuery = useLinksQuery({
+    select: ({ data }) => data.attributes,
+  });
+
   return (
     <section className={styles.partners}>
       <Container>
@@ -32,7 +38,13 @@ const Partners: FC<Props> = () => {
               alt="partners"
             />
           </div>
-          <Button className={styles.btn}>Создать запрос на проект</Button>
+          {linksQuery.isSuccess && linksQuery.data.requestProject && (
+            <Link href={linksQuery.data.requestProject} passHref>
+              <a>
+                <Button className={styles.btn}>Создать запрос на проект</Button>
+              </a>
+            </Link>
+          )}
         </Card>
       </Container>
     </section>

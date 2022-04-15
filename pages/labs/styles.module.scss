@@ -1,3 +1,9 @@
+.labs {
+  padding-top: 60px;
+  @media screen and (max-width: 992px) {
+    padding-top: 20px;
+  }
+}
 .controls {
   margin-top: 38px;
   display: flex;

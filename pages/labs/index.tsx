@@ -87,7 +87,7 @@ const Labs: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Container>
+      <Container className={styles.labs}>
         <H1>Лаборатории МИЦ</H1>
         <div className={styles.controls}>
           <Input

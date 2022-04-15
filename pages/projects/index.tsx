@@ -10,6 +10,7 @@ import Head from "next/head";
 import Link from "next/link";
 import CommonCard, { CommonCardSkeleton } from "views/CommonCard";
 
+import Button from "@/components/Button";
 import Container from "@/components/Container";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -23,6 +24,7 @@ import {
   useInfiniteProjectsQuery,
 } from "api/project/useInfiniteProjectsQuery";
 import { getFooter } from "api/useFooterQuery";
+import useLinksQuery from "api/useLinksQuery";
 import useProjectCategoriesQueryQuery, {
   getProjectCategories,
 } from "api/useProjectCategoriesQuery";
@@ -68,6 +70,10 @@ const Projects: NextPage = () => {
     select: ({ data }) => data.map(({ attributes }) => attributes),
   });
 
+  const linksQuery = useLinksQuery({
+    select: ({ data }) => data.attributes,
+  });
+
   const infProjectsQuery = useInfiniteProjectsQuery({
     searchValue: debouncedSearchValue,
     status,
@@ -77,6 +83,15 @@ const Projects: NextPage = () => {
   const items = infProjectsQuery.data?.pages
     .flatMap((page) => page.data)
     .map((item) => item.attributes);
+
+  const btn =
+    linksQuery.isSuccess && linksQuery.data.createProject ? (
+      <Link href={linksQuery.data.createProject} passHref>
+        <a>
+          <Button className={styles.btn}>Создать свой проект</Button>
+        </a>
+      </Link>
+    ) : null;
 
   return (
     <>
@@ -94,8 +109,8 @@ const Projects: NextPage = () => {
         className={styles.main}
         image="/home/quadro2.png"
         title="Проекты наших студентов"
-        cardDesc="На базе Молодежного Инженерного Центра каждый студент МГТУ им. Н.Э. Баумана может реализовать свой проект : от идеи до первых продаж. Самое время переходить от мечтаний к делу, становясь частью инженерного сообщества"
-        // btn={<Button>Создать свой проект</Button>}
+        cardDesc="На базе Молодежного Инженерного Центра каждый студент МГТУ им. Н.Э. Баумана может реализовать свой проект: от идеи до первых продаж. Самое время переходить от мечтаний к делу, становясь частью инженерного сообщества"
+        btn={btn}
       />
       <Container style={{ marginTop: 40 }}>
         <div className={styles.controls}>

@@ -11,7 +11,7 @@ import styles from "./styles.module.scss";
 const Logo = ({ className }: { className?: string }) => {
   const router = useRouter();
   return router.pathname.includes("/home") ? (
-    <LogoSvg />
+    <LogoSvg className={cn(className, styles.logo)} />
   ) : (
     <Link href="/" passHref>
       <a className={cn(className, styles.logo)}>

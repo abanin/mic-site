@@ -12,8 +12,11 @@
     rgba(84, 148, 251, 0.3) 100%
   );
 
+  min-height: 315px;
+
   @media screen and (max-width: 768px) {
     justify-content: center;
+    min-height: unset;
   }
 }
 

@@ -16,6 +16,7 @@ import projectKeys from "api/project/keys";
 import { getInfiniteProjects } from "api/project/useInfiniteProjectsQuery";
 import { getFooter } from "api/useFooterQuery";
 import { getHomePage } from "api/useHomePageQuery";
+import { getLinks } from "api/useLinksQuery";
 import { getSuccessStories } from "api/useSuccessStoriesQuery";
 import Contacts from "./components/Contacts";
 import Equipment from "./components/Equipment";
@@ -82,6 +83,7 @@ export async function getStaticProps() {
       })
     ),
     queryClient.prefetchQuery(eventKeys.all, getEvents),
+    queryClient.prefetchQuery(keys.links, getLinks),
   ]);
 
   return {
