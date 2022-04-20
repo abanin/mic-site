@@ -1,6 +1,7 @@
 import React from "react";
 import { dehydrate, QueryClient } from "react-query";
 import MainLayout from "layouts/MainLayout";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import StoryCard from "views/StoryCard";
@@ -98,11 +99,24 @@ const Events = () => {
               title="Проектные конкурсы"
             >
               <div className={styles.grid}>
-                <Link href="#" passHref>
-                  <a>
-                    <StoryCard topTitle="Hello" bottomTitle="World" />
-                  </a>
-                </Link>
+                {competitions.map((competition) => (
+                  <Link
+                    key={competition.id}
+                    href={`/events/${competition.attributes.slug}`}
+                    passHref
+                  >
+                    <a>
+                      <StoryCard
+                        image={competition.attributes.image.data.attributes.url}
+                        topTitle={competition.attributes.name}
+                        bottomTitle={getDate(
+                          competition.attributes.date,
+                          competition.attributes.endDate
+                        )}
+                      />
+                    </a>
+                  </Link>
+                ))}
               </div>
             </Disclosure>
           )}
@@ -144,7 +158,7 @@ const Events = () => {
 
 export default Events;
 
-export const getStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
 
   await Promise.all([

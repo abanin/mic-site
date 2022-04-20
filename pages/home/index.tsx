@@ -1,6 +1,6 @@
 import React from "react";
 import { dehydrate, QueryClient } from "react-query";
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 
 import Footer from "@/components/Footer";
@@ -52,7 +52,7 @@ const Home: NextPage = () => {
   );
 };
 
-export async function getStaticProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
   await Promise.all([
     queryClient.prefetchQuery(keys.homePage, getHomePage),
@@ -91,6 +91,6 @@ export async function getStaticProps() {
       dehydratedState: dehydrate(queryClient),
     },
   };
-}
+};
 
 export default Home;

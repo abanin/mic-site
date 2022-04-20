@@ -2,6 +2,7 @@ import React from "react";
 import { dehydrate, QueryClient } from "react-query";
 import createImageUrl from "helpers/createImageUrl";
 import ItemLayout from "layouts/ItemLayout";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -10,6 +11,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Icon from "@/components/Icon";
 import keys from "api/keys";
+import labsKeys from "api/labs/keys";
 import { useLabQuery } from "api/labs/useLabQuery";
 import { getFooter } from "api/useFooterQuery";
 
@@ -72,9 +74,19 @@ const Lab = () => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps<
+  {
+    dehydratedState: ReturnType<typeof dehydrate>;
+  },
+  { id: string }
+> = async (context) => {
+  if (!context.params) throw new Error("Error");
+
   const queryClient = new QueryClient();
-  await Promise.all([queryClient.prefetchQuery(keys.footer, getFooter)]);
+  await Promise.all([
+    queryClient.prefetchQuery(keys.footer, getFooter),
+    queryClient.prefetchQuery(labsKeys.lab(context.params.id)),
+  ]);
 
   return {
     props: {
@@ -82,18 +94,5 @@ export const getStaticProps = async () => {
     },
   };
 };
-
-export async function getStaticPaths() {
-  return {
-    paths: [
-      {
-        params: {
-          id: "1",
-        },
-      },
-    ],
-    fallback: false,
-  };
-}
 
 export default Lab;

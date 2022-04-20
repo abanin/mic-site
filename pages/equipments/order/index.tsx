@@ -3,7 +3,7 @@ import { dehydrate, QueryClient } from "react-query";
 import { toast } from "react-toastify";
 import createImageUrl from "helpers/createImageUrl";
 import OrderLayout from "layouts/OrderLayout";
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -99,7 +99,7 @@ const Order = () => {
 
 export default Order;
 
-export const getStaticProps: GetStaticProps<{
+export const getServerSideProps: GetServerSideProps<{
   dehydratedState: ReturnType<typeof dehydrate>;
 }> = async () => {
   const queryClient = new QueryClient();

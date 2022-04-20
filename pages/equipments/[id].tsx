@@ -2,7 +2,7 @@ import React from "react";
 import { dehydrate, QueryClient } from "react-query";
 import createImageUrl from "helpers/createImageUrl";
 import ItemLayout from "layouts/ItemLayout";
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -73,7 +73,7 @@ const Equipment = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   {
     dehydratedState: ReturnType<typeof dehydrate>;
   },
@@ -95,20 +95,5 @@ export const getStaticProps: GetStaticProps<
     },
   };
 };
-
-export async function getStaticPaths() {
-  const equipments = await getEquipments();
-
-  const paths = equipments.data.map(({ id }) => ({
-    params: {
-      id: id.toString(),
-    },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
 
 export default Equipment;

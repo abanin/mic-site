@@ -4,7 +4,7 @@ import { useDebounce } from "react-use";
 import createImageUrl from "helpers/createImageUrl";
 import useReducerAsState from "hooks/useReducerAsState";
 import ListLayout from "layouts/ListLayout";
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import WideCard, { WideCardSkeleton } from "views/WideCard";
@@ -112,7 +112,7 @@ const Labs: NextPage = () => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
   await Promise.all([
     queryClient.prefetchQuery(keys.footer, getFooter),

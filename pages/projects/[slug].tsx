@@ -2,7 +2,7 @@ import React from "react";
 import { dehydrate, QueryClient } from "react-query";
 import createImageUrl from "helpers/createImageUrl";
 import ItemLayout from "layouts/ItemLayout";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 
 import Button from "@/components/Button";
@@ -40,7 +40,7 @@ const Project = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   {
     dehydratedState: ReturnType<typeof dehydrate>;
   },
@@ -62,20 +62,5 @@ export const getStaticProps: GetStaticProps<
     },
   };
 };
-
-export async function getStaticPaths() {
-  const projects = await getProjects();
-
-  const paths = projects.data.map((project) => ({
-    params: {
-      slug: project.attributes.Slug.toString(),
-    },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
 
 export default Project;

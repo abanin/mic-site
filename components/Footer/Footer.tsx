@@ -59,7 +59,7 @@ const Footer = ({ className, style }: Props) => {
         <div className={styles.main}>
           {footerQuery.isSuccess && (
             <>
-              <ul className={styles.stat}>
+              {/* <ul className={styles.stat}>
                 <li className={styles.statItem}>
                   <span className={styles.statCount}>
                     {footerQuery.data.implementedProjectsCount}
@@ -80,7 +80,7 @@ const Footer = ({ className, style }: Props) => {
                   </span>
                   <span className={styles.statTitle}>Занимаются проектами</span>
                 </li>
-              </ul>
+              </ul> */}
               <ul className={styles.pages}>
                 {PAGES.map((page) => {
                   return (

@@ -2,7 +2,7 @@ import React from "react";
 import { dehydrate, QueryClient } from "react-query";
 import createImageUrl from "helpers/createImageUrl";
 import ItemLayout from "layouts/ItemLayout";
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -66,22 +66,7 @@ const Event = () => {
 
 export default Event;
 
-export async function getStaticPaths() {
-  const events = await getEvents();
-
-  const paths = events.data.map((event) => ({
-    params: {
-      slug: event.attributes.slug.toString(),
-    },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   {
     dehydratedState: ReturnType<typeof dehydrate>;
   },

@@ -5,7 +5,7 @@ import createImageUrl from "helpers/createImageUrl";
 import useReducerAsState from "hooks/useReducerAsState";
 import ListLayout from "layouts/ListLayout";
 import MainLayout from "layouts/MainLayout";
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import CommonCard, { CommonCardSkeleton } from "views/CommonCard";
@@ -151,14 +151,14 @@ const Projects: NextPage = () => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
 
   await Promise.all([
     queryClient.prefetchQuery(keys.footer, getFooter),
     queryClient.prefetchQuery(keys.projectCategories, getProjectCategories),
     queryClient.prefetchQuery(projectKeys.infinity("", "completed", []), () =>
-      getInfiniteProjects({ page: 1 }, (data) => ({
+      getInfiniteProjects({ page: 1, pageSize: 8 }, (data) => ({
         pages: [data],
         pageParam: [data.meta.pagination.page],
       }))

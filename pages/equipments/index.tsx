@@ -6,6 +6,7 @@ import stringCutter from "helpers/stringCutter";
 import useReducerAsState from "hooks/useReducerAsState";
 import ListLayout from "layouts/ListLayout";
 import MainLayout from "layouts/MainLayout";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import CommonCard, { CommonCardSkeleton } from "views/CommonCard";
@@ -143,7 +144,7 @@ const Equipments = () => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
 
   await Promise.all([
@@ -151,12 +152,6 @@ export const getStaticProps = async () => {
     queryClient.prefetchQuery(
       equipmentKeys.equipmentCategories(),
       getEquipmentCategories
-    ),
-    queryClient.prefetchQuery(equipmentKeys.infinity(""), () =>
-      getInfiniteEquipments({ page: 1 }, (data) => ({
-        pages: [data],
-        pageParam: [data.meta.pagination.page],
-      }))
     ),
   ]);
 
