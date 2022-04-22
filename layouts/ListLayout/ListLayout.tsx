@@ -35,11 +35,7 @@ const ListLayout = <T,>({
       )}
 
       {items && !loading && (
-        <ul className={styles.list}>
-          {items.map((item) => (
-            <li key={keyAccessor(item)}>{renderItem(item)}</li>
-          ))}
-        </ul>
+        <ul className={styles.list}>{items.map((item) => renderItem(item))}</ul>
       )}
 
       {!items?.length && !loading && (

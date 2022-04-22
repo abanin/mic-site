@@ -39,15 +39,17 @@ type State = {
 };
 
 const renderItem = (item: Project) => (
-  <Link href={`/projects/${item.Slug}`} passHref>
-    <a>
-      <CommonCard
-        title={item.name}
-        desc={item.description}
-        mediaSrc={createImageUrl(item.previewImage.data.attributes.url)}
-      />
-    </a>
-  </Link>
+  <li className={styles.item} key={item.Slug}>
+    <Link href={`/projects/${item.Slug}`} passHref>
+      <a className={styles.cardWrapper}>
+        <CommonCard
+          title={item.name}
+          desc={item.description}
+          mediaSrc={createImageUrl(item.previewImage.data.attributes.url)}
+        />
+      </a>
+    </Link>
+  </li>
 );
 
 const renderSkeletonItem = () => <CommonCardSkeleton />;
@@ -88,7 +90,7 @@ const Projects: NextPage = () => {
     linksQuery.isSuccess && linksQuery.data.createProject ? (
       <Link href={linksQuery.data.createProject} passHref>
         <a>
-          <Button className={styles.btn}>Создать свой проект</Button>
+          <Button>Создать свой проект</Button>
         </a>
       </Link>
     ) : null;

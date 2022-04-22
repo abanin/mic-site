@@ -15,3 +15,13 @@
 .input {
   margin-right: 15px;
 }
+
+.item {
+  display: flex;
+  align-items: stretch;
+}
+
+.cardWrapper {
+  display: inline-flex;
+  align-items: stretch;
+}
