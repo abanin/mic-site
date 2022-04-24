@@ -133,7 +133,10 @@ const Students = () => {
             navigation={{
               prevEl: prevRef.current,
               nextEl: nextRef.current,
-              disabledClass: "arrow-disabled",
+              disabledClass:
+                storiesQuery.data.length < 5
+                  ? "arrow-disabled-all"
+                  : "arrow-disabled",
             }}
           >
             {storiesQuery.data.map((item) => {

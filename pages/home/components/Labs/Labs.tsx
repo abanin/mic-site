@@ -44,55 +44,58 @@ const Labs = () => {
     >
       <div style={{ position: "relative" }}>
         <SwiperNavigation prevArrowRef={prevRef} nextArrowRef={nextRef} />
-        <Swiper
-          modules={[Navigation, Pagination]}
-          pagination={{
-            el,
-            currentClass: "",
-            type: "bullets",
-            bulletClass: stylesPagination.dot,
-            bulletActiveClass: stylesPagination.dotActive,
-            clickable: true,
-          }}
-          navigation={{
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-            disabledClass: "arrow-disabled",
-          }}
-          className={styles.swiper}
-          spaceBetween={50}
-          slidesPerView={1}
-          slidesPerGroup={4}
-          breakpoints={{
-            576: {
-              slidesPerGroup: 1,
-              slidesPerView: 2,
-              spaceBetween: 15,
-            },
-            768: {
-              slidesPerView: 4,
-            },
-          }}
-        >
-          {infLabsQuery.isSuccess &&
-            labs?.map((lab) => {
-              return (
-                <SwiperSlide className={styles.swiperSlide} key={lab.id}>
-                  <Link href={`/labs/${lab.id}`} passHref>
-                    <a>
-                      <WideCard
-                        imageSrc={createImageUrl(
-                          lab.attributes.previewImage.data.attributes.url
-                        )}
-                        desc={lab.attributes.description}
-                        title={lab.attributes.name}
-                      />
-                    </a>
-                  </Link>
-                </SwiperSlide>
-              );
-            })}
-        </Swiper>
+        {labs && (
+          <Swiper
+            modules={[Navigation, Pagination]}
+            pagination={{
+              el,
+              currentClass: "",
+              type: "bullets",
+              bulletClass: stylesPagination.dot,
+              bulletActiveClass: stylesPagination.dotActive,
+              clickable: true,
+            }}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+              disabledClass:
+                labs?.length < 5 ? "arrow-disabled-all" : "arrow-disabled",
+            }}
+            className={styles.swiper}
+            spaceBetween={50}
+            slidesPerView={1}
+            slidesPerGroup={4}
+            breakpoints={{
+              576: {
+                slidesPerGroup: 1,
+                slidesPerView: 2,
+                spaceBetween: 15,
+              },
+              768: {
+                slidesPerView: 4,
+              },
+            }}
+          >
+            {infLabsQuery.isSuccess &&
+              labs?.map((lab) => {
+                return (
+                  <SwiperSlide className={styles.swiperSlide} key={lab.id}>
+                    <Link href={`/labs/${lab.id}`} passHref>
+                      <a>
+                        <WideCard
+                          imageSrc={createImageUrl(
+                            lab.attributes.previewImage.data.attributes.url
+                          )}
+                          desc={lab.attributes.description}
+                          title={lab.attributes.name}
+                        />
+                      </a>
+                    </Link>
+                  </SwiperSlide>
+                );
+              })}
+          </Swiper>
+        )}
 
         <SwiperPagination ref={(el) => setEl(el)} />
       </div>
