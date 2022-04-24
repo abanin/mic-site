@@ -20,25 +20,6 @@ import { useEventsQuery } from "api/events/useEventsQuery";
 
 import styles from "./styles.module.scss";
 
-const EVENTS_TYPES = [
-  {
-    title: "Мероприятия МИЦ",
-    image: "/home/badge.png",
-  },
-  {
-    title: "Олимпиады и конференции",
-    image: "/home/pen.png",
-  },
-  {
-    title: "Проектные конкурсы",
-    image: "/home/quadro.png",
-  },
-  {
-    title: "Образовательные программы",
-    image: "/home/book.png",
-  },
-];
-
 const Events = () => {
   const [el, setEl] = useState<null | HTMLDivElement>(null);
   const isMobile = useMedia("(max-width: 768px)", false);
@@ -69,21 +50,25 @@ const Events = () => {
 
   const eventsTypes = [
     {
+      name: "events",
       title: "Мероприятия МИЦ",
       image: "/home/badge.png",
       items: events,
     },
     {
+      name: "olympics",
       title: "Олимпиады и конференции",
       image: "/home/pen.png",
       items: olympics,
     },
     {
+      name: "competitions",
       title: "Проектные конкурсы",
       image: "/home/quadro.png",
       items: competitions,
     },
     {
+      name: "educationPrograms",
       title: "Образовательные программы",
       image: "/home/book.png",
       items: educationPrograms,
@@ -123,7 +108,7 @@ const Events = () => {
                     );
                   })}
                 </ul>
-                <Link passHref href="#">
+                <Link passHref href={`/events?open=${type.name}`}>
                   <StyledLink className={styles.link}>Смотреть все</StyledLink>
                 </Link>
                 <div className={styles.image}>
@@ -192,7 +177,7 @@ const Events = () => {
                           </li>
                         ))}
                       </ul>
-                      <Link passHref href="#">
+                      <Link passHref href={`/events?open=${type.name}`}>
                         <StyledLink className={styles.link}>
                           Смотреть все
                         </StyledLink>

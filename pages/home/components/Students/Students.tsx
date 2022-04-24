@@ -2,29 +2,27 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import React, { useRef, useState } from "react";
-import { useMedia } from "react-use";
+import React, { useState } from "react";
 import cn from "classnames";
 import createImageUrl from "helpers/createImageUrl";
-import createUrl from "helpers/createUrl";
 import imageLoader from "helpers/imageLoader";
 import Image from "next/image";
 import Link from "next/link";
-import SwiperInstance, { Navigation, Pagination } from "swiper";
+import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import Arrow from "@/components/Arrow";
-import Button from "@/components/Button";
 import Card from "@/components/Card";
 import H3 from "@/components/H3";
 import Icon, { IconType } from "@/components/Icon";
 import Section from "@/components/Section";
 import StyledLink from "@/components/StyledLink";
+import SwiperNavigation, {
+  useSwiperNavigationArrows,
+} from "@/components/SwiperNavigation";
 import SwiperPagination, {
   stylesPagination,
 } from "@/components/SwiperPagination";
 import useStoriesQuery from "api/useSuccessStoriesQuery";
-import AvatarPng from "./avatar.png";
 
 import styles from "./styles.module.scss";
 
@@ -55,7 +53,8 @@ const LINKS: { iconName: IconType; title: string; href: string }[] = [
 
 const Students = () => {
   const [el, setEl] = useState<HTMLDivElement | null>(null);
-  const isMobile = useMedia("(max-width: 992px)", false);
+
+  const [prevRef, nextRef] = useSwiperNavigationArrows();
 
   const storiesQuery = useStoriesQuery({
     select: ({ data }) => data.map((item) => item.attributes),
@@ -116,6 +115,7 @@ const Students = () => {
       <H3 className={styles.h3}>Истории наших выпускников</H3>
 
       <div style={{ position: "relative" }}>
+        <SwiperNavigation prevArrowRef={prevRef} nextArrowRef={nextRef} />
         {el && storiesQuery.isSuccess && (
           <Swiper
             modules={[Navigation, Pagination]}
@@ -131,8 +131,9 @@ const Students = () => {
             spaceBetween={50}
             slidesPerView={1}
             navigation={{
-              prevEl: `.${styles.left}`,
-              nextEl: `.${styles.right}`,
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+              disabledClass: "arrow-disabled",
             }}
           >
             {storiesQuery.data.map((item) => {

@@ -1,5 +1,6 @@
 import React, { CSSProperties, ReactNode } from "react";
 import { useMedia } from "react-use";
+import cn from "classnames";
 import imageLoader from "helpers/imageLoader";
 import Image from "next/image";
 
@@ -29,7 +30,7 @@ const MainLayout = ({
 }: Props) => {
   const isMobile = useMedia("(max-width: 768px)", false);
   return (
-    <Container className={className} style={style}>
+    <Container className={cn(className, styles.main)} style={style}>
       <H1>{title}</H1>
       {cardDesc && (
         <Card

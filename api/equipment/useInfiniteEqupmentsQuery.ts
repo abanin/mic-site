@@ -20,7 +20,7 @@ export const getInfiniteEquipments = async <T = EquipmentResponse>(
   params: Params,
   selector?: (data: EquipmentResponse) => T
 ) => {
-  const { page, pageSize = 4, requestParams = {} } = params;
+  const { page, pageSize = 8, requestParams = {} } = params;
 
   const response = await fetch(
     createUrl("/equipments", {

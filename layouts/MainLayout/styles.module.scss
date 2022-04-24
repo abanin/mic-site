@@ -1,6 +1,10 @@
 .main {
-  padding: 60px 0 0 0;
+  padding-top: 60px;
   display: block;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 30px;
+  }
 }
 
 .card {
@@ -19,9 +23,13 @@
   line-height: 140%;
   color: #555555;
   @media screen and (max-width: 992px) {
+    font-size: 18px;
+    line-height: 140%;
     width: 100%;
   }
   @media screen and (max-width: 768px) {
+    font-size: 16px;
+    line-height: 160%;
     width: 100%;
   }
 }

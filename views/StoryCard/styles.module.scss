@@ -11,6 +11,12 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  @media screen and (max-width: 768px) {
+    min-height: 160px;
+    min-width: 160px;
+    max-width: 160px;
+    padding: 15px 8px;
+  }
 }
 
 .title {
@@ -19,6 +25,11 @@
   font-size: 24px;
   line-height: 120%;
   color: #f2f4f8;
+  @media screen and (max-width: 768px) {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 140%;
+  }
 }
 
 .topTitle {

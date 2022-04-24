@@ -1,7 +1,7 @@
 .labs {
   padding-top: 60px;
   @media screen and (max-width: 992px) {
-    padding-top: 20px;
+    padding-top: 30px;
   }
 }
 .controls {
@@ -20,7 +20,7 @@
 .input {
   margin-right: 15px;
   @media screen and (max-width: 768px) {
-    margin-bottom: 15px;
+    margin-right: 0;
   }
 }
 

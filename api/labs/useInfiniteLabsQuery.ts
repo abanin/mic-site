@@ -21,7 +21,7 @@ export const getInfiniteLabs = async <T = LabsResponse>(
   params: Params,
   selector?: (data: LabsResponse) => T
 ) => {
-  const { page, pageSize = 4, requestParams = {} } = params;
+  const { page, pageSize = 8, requestParams = {} } = params;
 
   const response = await fetch(
     createUrl("/labs", {

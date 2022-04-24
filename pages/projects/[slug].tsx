@@ -18,6 +18,7 @@ import ImagePng from "./image.png";
 const Project = () => {
   const router = useRouter();
   const slug = typeof router.query.slug === "string" ? router.query.slug : "";
+
   const projectQuery = useProjectQuery(slug, {
     select: ({ data }) => data[0].attributes,
   });
@@ -49,6 +50,8 @@ export const getServerSideProps: GetServerSideProps<
   if (!params) throw new Error("slug must be not empty");
 
   const queryClient = new QueryClient();
+
+  console.log(params.slug);
   await Promise.all([
     queryClient.prefetchQuery(keys.footer, getFooter),
     queryClient.prefetchQuery(projectKeys.project(params.slug), () =>

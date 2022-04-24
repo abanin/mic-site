@@ -1,0 +1,29 @@
+.prev {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-70%);
+  left: -35px;
+  @media screen and (max-width: 768px) {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.next {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-70%);
+  right: -35px;
+  @media screen and (max-width: 768px) {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.hidden {
+  display: none !important;
+}

@@ -1,10 +1,19 @@
 .container {
   padding-top: 60px;
+  @media screen and (max-width: 768px) {
+    padding-top: 20px;
+  }
 }
 
 .h1 {
   width: 70%;
   line-height: 120%;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 120%;
+  }
 }
 
 .desc {
@@ -15,6 +24,13 @@
   font-size: 20px;
   line-height: 140%;
   color: #555555;
+  @media screen and (max-width: 768px) {
+    margin: 13px 0 0 0;
+    width: 100%;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+  }
 }
 
 .h3 {
@@ -24,11 +40,19 @@
   color: #2b2b2b;
   display: block;
   margin-top: 30px;
+  @media screen and (max-width: 768px) {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+  }
 }
 
 .form {
   width: 30%;
   display: block;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .input {

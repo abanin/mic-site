@@ -11,7 +11,7 @@ type EventResponse = StrapiResponseArray<Event, null>;
 export const getEvent = async <T = EventResponse>(slug: string) => {
   const response = await fetch(
     createUrl(`/events`, {
-      filter: {
+      filters: {
         slug: {
           $eq: slug,
         },

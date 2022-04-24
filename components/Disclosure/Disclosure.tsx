@@ -10,6 +10,7 @@ import styles from "./styles.module.scss";
 type Props = {
   className?: string;
   isOpen?: boolean;
+  isDefaultOpen?: boolean;
   onPanelClick?: () => void;
   title: string;
   keepMount?: boolean;
@@ -26,10 +27,11 @@ const Disclosure: FC<Props> = ({
   title,
   keepMount = false,
   isOpen,
+  isDefaultOpen = false,
   onPanelClick,
 }) => {
   const [state, setState] = useReducerAsState({
-    opened: false,
+    opened: isDefaultOpen,
   });
 
   const { opened } = state;

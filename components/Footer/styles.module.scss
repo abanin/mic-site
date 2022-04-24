@@ -18,7 +18,8 @@
   display: inline-flex;
   margin-bottom: 40px;
   @media screen and (max-width: 768px) {
-    margin: 0 auto 40px auto;
+    display: none;
+    margin: 0;
   }
 }
 

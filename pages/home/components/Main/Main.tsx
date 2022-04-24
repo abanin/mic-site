@@ -28,6 +28,7 @@ const Main = () => {
             <p className={styles.desc}>{homePageQuery.data.pageDescription}</p>
             {linksQuery.data.joinMIC && (
               <a
+                className={styles.link}
                 target="_blank"
                 href={linksQuery.data.joinMIC}
                 rel="noreferrer"

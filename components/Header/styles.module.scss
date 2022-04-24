@@ -73,8 +73,14 @@
   display: inline-flex;
   margin-right: 15px;
 
-  @media screen and (max-width: 1200px) {
-  }
+  position: fixed;
+  top: 15px;
+  right: 0;
+  z-index: 101;
+  display: inline-flex;
+  margin-left: auto;
+  align-items: center;
+  color: #555555;
 }
 
 .user {
@@ -105,12 +111,9 @@
   right: 0;
 }
 
-.buttons {
-  position: fixed;
-  top: 20px;
-  right: 0;
-  z-index: 101;
-  display: inline-flex;
-  margin-left: auto;
-  align-items: center;
+.mobHeader {
+  padding: 20px 0 0 0;
+  position: static;
+  width: 100%;
+  display: flex;
 }

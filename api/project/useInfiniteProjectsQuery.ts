@@ -21,7 +21,7 @@ export const getInfiniteProjects = async <T = ProjectResponse>(
   params: Params,
   selector?: (data: ProjectResponse) => T
 ) => {
-  const { page, pageSize = 4, requestParams = {} } = params;
+  const { page, pageSize = 8, requestParams = {} } = params;
 
   const response = await fetch(
     createUrl("/projects", {

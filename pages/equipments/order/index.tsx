@@ -17,6 +17,8 @@ import { useEquipmentQuery } from "api/equipment/useEquipmentQuery";
 import keys from "api/keys";
 import { getFooter } from "api/useFooterQuery";
 
+import styles from "./styles.module.scss";
+
 const Order = () => {
   const router = useRouter();
 
@@ -75,7 +77,7 @@ const Order = () => {
           onSubmit={onSubmit}
         >
           <HorizontalCard
-            style={{ width: "70%" }}
+            className={styles.card}
             title={equipmentQuery.data.name}
             desc={equipmentQuery.data.description}
             mediaSrc={createImageUrl(

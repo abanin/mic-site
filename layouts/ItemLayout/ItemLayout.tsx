@@ -32,6 +32,7 @@ const ItemLayout: FC<Props> = ({
   children,
 }) => {
   const isMobile = useMedia("(max-width: 768px)", false);
+
   return (
     <>
       <Container className={cn(styles.itemPage, className)}>

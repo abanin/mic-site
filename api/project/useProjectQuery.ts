@@ -8,14 +8,15 @@ import { Project } from "./types";
 type ProjectResponse = StrapiResponseArrayWithPaging<Project>;
 
 export const getProject = async <T = ProjectResponse>(slug: string) => {
+  console.log(slug);
   const response = await fetch(
     createUrl("/projects", {
-      filter: {
-        slug: {
+      filters: {
+        Slug: {
           $eq: slug,
         },
       },
-      fields: ["status", "name", "description", "content", "slug", "Slug"],
+      fields: ["status", "name", "description", "content", "Slug"],
       populate: {
         previewImage: {
           fields: ["url", "name"],

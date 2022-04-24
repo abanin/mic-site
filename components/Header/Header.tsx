@@ -97,7 +97,10 @@ const Header = ({ className, style }: Props) => {
             )}
           </AnimatePresence>
 
-          <div className={styles.buttons}>
+          <div className={styles.mobHeader}>
+            <Container>
+              <Logo className={styles.logo} />
+            </Container>
             <div className={styles.hamburger}>
               <Hamburger toggled={isOpen} toggle={setIsOpen} />
             </div>

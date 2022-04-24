@@ -4,6 +4,7 @@ import MainLayout from "layouts/MainLayout";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import StoryCard from "views/StoryCard";
 
 import Container from "@/components/Container";
@@ -19,6 +20,10 @@ import getDate from "./helpers/getDate";
 import styles from "./styles.module.scss";
 
 const Events = () => {
+  const router = useRouter();
+
+  const { open } = router.query;
+
   const eventsQuery = useEventsQuery({
     select: ({ data }) => data,
   });
@@ -55,7 +60,6 @@ const Events = () => {
       </Head>
       <Header />
       <MainLayout
-        className={styles.main}
         title="Мероприятия МИЦ"
         image="/home/badge.png"
         cardDesc="Получай полезные навыки, открывай доступ к новому оборудованию, популяризируй свои идеи в научном сообществе, выигрывай гранты на разработку своих проектов и заводи новые знакомства"
@@ -63,12 +67,27 @@ const Events = () => {
       {eventsQuery.isSuccess && (
         <Container>
           {Boolean(events.length) && (
-            <Disclosure className={styles.disclosure} title="Мероприятия">
+            <Disclosure
+              isDefaultOpen={open === "events"}
+              className={styles.disclosure}
+              title="Мероприятия"
+            >
               <div className={styles.grid}>
                 {events.map((event) => (
-                  <Link key={event.id} href="#" passHref>
-                    <a>
-                      <StoryCard topTitle="Hello" bottomTitle="World" />
+                  <Link
+                    key={event.id}
+                    href={`/events/${event.attributes.slug}`}
+                    passHref
+                  >
+                    <a className={styles.link}>
+                      <StoryCard
+                        image={event.attributes.image.data.attributes.url}
+                        topTitle={event.attributes.name}
+                        bottomTitle={getDate(
+                          event.attributes.date,
+                          event.attributes.endDate
+                        )}
+                      />
                     </a>
                   </Link>
                 ))}
@@ -78,14 +97,26 @@ const Events = () => {
 
           {Boolean(olympics.length) && (
             <Disclosure
+              isDefaultOpen={open === "olympics"}
               className={styles.disclosure}
               title="Олимпиады и конференции"
             >
               <div className={styles.grid}>
                 {olympics.map((olympic) => (
-                  <Link key={olympic.id} href="#" passHref>
-                    <a>
-                      <StoryCard topTitle="Hello" bottomTitle="World" />
+                  <Link
+                    key={olympic.id}
+                    href={`/events/${olympic.attributes.slug}`}
+                    passHref
+                  >
+                    <a className={styles.link}>
+                      <StoryCard
+                        image={olympic.attributes.image.data.attributes.url}
+                        topTitle={olympic.attributes.name}
+                        bottomTitle={getDate(
+                          olympic.attributes.date,
+                          olympic.attributes.endDate
+                        )}
+                      />
                     </a>
                   </Link>
                 ))}
@@ -95,6 +126,7 @@ const Events = () => {
 
           {Boolean(competitions.length) && (
             <Disclosure
+              isDefaultOpen={open === "competitions"}
               className={styles.disclosure}
               title="Проектные конкурсы"
             >
@@ -105,7 +137,7 @@ const Events = () => {
                     href={`/events/${competition.attributes.slug}`}
                     passHref
                   >
-                    <a>
+                    <a className={styles.link}>
                       <StoryCard
                         image={competition.attributes.image.data.attributes.url}
                         topTitle={competition.attributes.name}
@@ -123,6 +155,7 @@ const Events = () => {
 
           {Boolean(educationPrograms.length) && (
             <Disclosure
+              isDefaultOpen={open === "educationPrograms"}
               className={styles.disclosure}
               title="Образовательные программы"
             >
@@ -133,7 +166,7 @@ const Events = () => {
                     href={`/events/${program.attributes.slug}`}
                     passHref
                   >
-                    <a>
+                    <a className={styles.link}>
                       <StoryCard
                         image={program.attributes.image.data.attributes.url}
                         topTitle={program.attributes.name}
