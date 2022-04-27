@@ -1,9 +1,66 @@
 .cardMedia {
   position: relative;
   margin: 15px 15px 0 15px;
-  height: 200px;
-  min-height: 200px;
   width: auto;
+  height: auto;
   border-radius: 30px;
   overflow: hidden;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #f3f3f3;
+}
+
+.aspect-3-4 {
+  position: relative;
+  height: 0px;
+  padding-bottom: 75%;
+
+  .imageWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.aspect-16-9 {
+  position: relative;
+  height: 0px;
+  padding-bottom: 56.25%;
+
+  .imageWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.aspect-1-1 {
+  position: relative;
+  height: 0px;
+  padding-bottom: 100%;
+
+  .imageWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
 }

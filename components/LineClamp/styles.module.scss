@@ -1,6 +1,6 @@
 .lineClamp {
-  --lineClamp: 8;
-  --lineClampHeight: 11.2em;
+  --lineClamp: 6;
+  --lineClampHeight: 8.2em;
   overflow: hidden;
   position: relative;
   height: var(--lineClampHeight);
@@ -23,7 +23,7 @@
   );
 }
 
-@supports (-webkit-line-clamp: 8) {
+@supports (-webkit-line-clamp: 6) {
   .lineClamp {
     display: -webkit-box;
     -webkit-line-clamp: var(--lineClamp);

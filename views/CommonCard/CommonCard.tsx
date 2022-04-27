@@ -30,7 +30,7 @@ const CommonCard: FC<Props> = ({
 }) => {
   return (
     <Card style={style} className={cn(className, styles.card)}>
-      <CardMedia src={mediaSrc} alt={title} />
+      <CardMedia aspect="3:4" src={mediaSrc} alt={title} />
       <CardContent className={styles.content}>
         <LineClamp height="2.8em" lineClamp={2}>
           <H3>{title}</H3>

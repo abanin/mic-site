@@ -14,7 +14,7 @@ type Props = {
   lineClamp?: CSSProperties["lineClamp"];
 };
 
-const LineClamp = ({ children, height = "11.2em", lineClamp = 8 }: Props) => {
+const LineClamp = ({ children, height = "8.2em", lineClamp = 6 }: Props) => {
   const style: CSSProperties & {
     "--lineClampHeight": CSSProperties["height"];
     "--lineClamp": CSSProperties["lineClamp"];

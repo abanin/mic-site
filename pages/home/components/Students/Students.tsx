@@ -112,7 +112,7 @@ const Students = () => {
         })}
       </div>
 
-      <H3 className={styles.h3}>Истории наших выпускников</H3>
+      <H3 className={styles.h3}>Истории наших наставников</H3>
 
       <div style={{ position: "relative" }}>
         <SwiperNavigation prevArrowRef={prevRef} nextArrowRef={nextRef} />

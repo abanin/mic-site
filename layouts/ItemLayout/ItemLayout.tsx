@@ -6,6 +6,7 @@ import createImageUrl from "helpers/createImageUrl";
 import imageLoader from "helpers/imageLoader";
 import Image from "next/image";
 
+import CardMedia from "@/components/CardMedia";
 import Container from "@/components/Container";
 import H1 from "@/components/H1";
 
@@ -37,14 +38,7 @@ const ItemLayout: FC<Props> = ({
     <>
       <Container className={cn(styles.itemPage, className)}>
         <div className={styles.info}>
-          <div className={styles.image}>
-            <Image
-              loader={imageLoader}
-              layout="fill"
-              src={mainImageSrc}
-              alt={title}
-            />
-          </div>
+          <CardMedia className={styles.image} src={mainImageSrc} alt={title} />
           {!isMobile && renderActions && (
             <div className={styles.actions}>{renderActions()}</div>
           )}
