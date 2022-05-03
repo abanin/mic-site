@@ -45,25 +45,28 @@ const Lab = () => {
           content={labQuery.data.content}
           renderActions={() => (
             <>
-              <Link href={`tel:${labQuery.data.phone}`} passHref>
-                <a className={styles.iconWrapper}>
-                  <Icon
-                    className={styles.icon}
-                    classNameSvg={styles.svg}
-                    iconName="phone"
-                  />
-                </a>
-              </Link>
-
-              <Link href={`mailto:${labQuery.data.email}`} passHref>
-                <a className={styles.iconWrapper}>
-                  <Icon
-                    className={styles.icon}
-                    classNameSvg={styles.svg}
-                    iconName="mail"
-                  />
-                </a>
-              </Link>
+              {labQuery.data.phone && (
+                <Link href={`tel:${labQuery.data.phone}`} passHref>
+                  <a className={styles.iconWrapper}>
+                    <Icon
+                      className={styles.icon}
+                      classNameSvg={styles.svg}
+                      iconName="phone"
+                    />
+                  </a>
+                </Link>
+              )}
+              {labQuery.data.email && (
+                <Link href={`mailto:${labQuery.data.email}`} passHref>
+                  <a className={styles.iconWrapper}>
+                    <Icon
+                      className={styles.icon}
+                      classNameSvg={styles.svg}
+                      iconName="mail"
+                    />
+                  </a>
+                </Link>
+              )}
             </>
           )}
         />
