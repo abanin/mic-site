@@ -50,6 +50,7 @@
 
 .map {
   outline: none;
+  overflow: hidden !important;
   display: flex;
   margin: auto 0 auto auto;
   overflow: hidden;
@@ -75,5 +76,7 @@
 }
 
 .iframe {
+  border-radius: 30px;
+  overflow: hidden;
   border: none;
 }

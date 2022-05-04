@@ -115,6 +115,9 @@
   margin-left: auto;
   margin: 0;
   padding: 0;
+  @media screen and (max-width: 768px) {
+    margin-top: 16px;
+  }
 }
 
 .addressIcon {
@@ -129,4 +132,7 @@
   font-size: 20px;
   line-height: 32px;
   color: #f2f4f8;
+  @media screen and (max-width: 768px) {
+    margin-top: 0px;
+  }
 }

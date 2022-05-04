@@ -32,7 +32,7 @@
   }
 
   @media screen and (max-width: 768px) {
-    align-items: flex-start;
+    align-items: center;
     margin-top: 15px;
     font-size: 12px;
     line-height: 140%;
@@ -56,6 +56,9 @@
 
 .firstCount {
   letter-spacing: 4px;
+  @media screen and (max-width: 768px) {
+    letter-spacing: 2px;
+  }
 }
 
 .image {
