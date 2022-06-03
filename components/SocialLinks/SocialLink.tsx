@@ -1,4 +1,6 @@
 import React, { CSSProperties } from "react";
+import CopyToClipboard from "react-copy-to-clipboard";
+import { toast } from "react-toastify";
 import cn from "classnames";
 import Link from "next/link";
 
@@ -36,6 +38,21 @@ const SocialLink = ({ className, style, theme = "light" }: Props) => {
         SOCIAL_LINKS.map((link) => {
           const prefix = link.prefix ?? "";
           const href = `${prefix}${socialLinksQuery.data[link.key]}`;
+          if (link.key === "email")
+            return (
+              <CopyToClipboard
+                text={socialLinksQuery.data[link.key]}
+                onCopy={() =>
+                  toast.success("Почта была скопирована в ваш буфер обмена")
+                }
+              >
+                <li key={link.key} className={styles.socialItem}>
+                  <StyledLink className={styles.socialLink}>
+                    <Icon classNameSvg={styles.svg} iconName={link.iconName} />
+                  </StyledLink>
+                </li>
+              </CopyToClipboard>
+            );
           return (
             <li key={link.key} className={styles.socialItem}>
               <Link passHref href={href}>
