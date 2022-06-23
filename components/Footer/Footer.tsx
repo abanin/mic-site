@@ -36,10 +36,6 @@ const PAGES = [
     title: "Мероприятия",
     href: "/events",
   },
-  {
-    title: "Контакты",
-    href: "/contacts",
-  },
 ];
 
 type Props = {
