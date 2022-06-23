@@ -43,6 +43,7 @@ const renderItem = (item: Project) => (
     <Link href={`/projects/${item.Slug}`} passHref>
       <a className={styles.cardWrapper}>
         <CommonCard
+          className={styles.card}
           title={item.name}
           desc={item.description}
           mediaSrc={createImageUrl(item.previewImage.data.attributes.url)}

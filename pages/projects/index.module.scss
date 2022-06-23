@@ -21,11 +21,17 @@
 }
 
 .item {
+  width: 100%;
   display: flex;
   align-items: stretch;
 }
 
 .cardWrapper {
+  width: 100%;
   display: inline-flex;
   align-items: stretch;
+}
+
+.card {
+  width: 100%;
 }
