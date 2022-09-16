@@ -8,7 +8,6 @@ import { Project } from "./types";
 type ProjectResponse = StrapiResponseArrayWithPaging<Project>;
 
 export const getProject = async <T = ProjectResponse>(slug: string) => {
-  console.log(slug);
   const response = await fetch(
     createUrl("/projects", {
       filters: {

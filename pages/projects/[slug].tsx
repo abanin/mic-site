@@ -51,7 +51,6 @@ export const getServerSideProps: GetServerSideProps<
 
   const queryClient = new QueryClient();
 
-  console.log(params.slug);
   await Promise.all([
     queryClient.prefetchQuery(keys.footer, getFooter),
     queryClient.prefetchQuery(projectKeys.project(params.slug), () =>

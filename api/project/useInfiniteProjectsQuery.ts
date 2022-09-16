@@ -23,21 +23,36 @@ export const getInfiniteProjects = async <T = ProjectResponse>(
 ) => {
   const { page, pageSize = 8, requestParams = {} } = params;
 
+  let filters: {
+    name?: {
+      $containsi?: string;
+    };
+    status?: {
+      $eq?: "completed" | "WIP";
+    };
+    categories?: {
+      type?: {
+        $in?: string[];
+      };
+    };
+  } = {};
+
+  if (requestParams.searchValue) {
+    filters.name = {
+      $containsi: requestParams.searchValue,
+    };
+  }
+  if (requestParams.categoryTypes) {
+    filters.categories = {
+      type: {
+        $in: requestParams.categoryTypes ?? undefined,
+      },
+    };
+  }
+
   const response = await fetch(
     createUrl("/projects", {
-      filters: {
-        name: {
-          $containsi: requestParams.searchValue,
-        },
-        status: {
-          $eq: requestParams.status,
-        },
-        categories: {
-          type: {
-            $in: requestParams.categoryTypes,
-          },
-        },
-      },
+      filters,
       pagination: {
         page: page,
         pageSize: pageSize,

@@ -41,12 +41,13 @@ const SocialLink = ({ className, style, theme = "light" }: Props) => {
           if (link.key === "email")
             return (
               <CopyToClipboard
+                key={link.key}
                 text={socialLinksQuery.data[link.key]}
                 onCopy={() =>
                   toast.success("Почта была скопирована в ваш буфер обмена")
                 }
               >
-                <li key={link.key} className={styles.socialItem}>
+                <li className={styles.socialItem}>
                   <StyledLink className={styles.socialLink}>
                     <Icon classNameSvg={styles.svg} iconName={link.iconName} />
                   </StyledLink>

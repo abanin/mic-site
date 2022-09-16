@@ -25,10 +25,6 @@ const PAGES = [
     href: "/equipments",
   },
   {
-    title: "Студенту",
-    href: "/students",
-  },
-  {
     title: "Лаборатории",
     href: "/labs",
   },
